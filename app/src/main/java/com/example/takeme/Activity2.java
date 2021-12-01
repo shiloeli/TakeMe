@@ -22,7 +22,7 @@ public class Activity2 extends AppCompatActivity {
     }
 
     public void onClickCreate(View view) {
-        Intent intenet=new Intent(Activity2.this,board.class);
+        Intent intenet=new Intent(Activity2.this,DriverOrTrempist.class);
         Bundle b=new Bundle();
         startActivity(intenet);
     }

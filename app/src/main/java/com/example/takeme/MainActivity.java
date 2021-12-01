@@ -29,5 +29,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickSend(View view) {
+        Intent intenet=new Intent(MainActivity.this,DriverOrTrempist.class);
+        Bundle b=new Bundle();
+        startActivity(intenet);
     }
 }

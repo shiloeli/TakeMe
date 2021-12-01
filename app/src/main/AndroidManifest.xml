@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".Tremp"
+            android:exported="false" />
+        <activity
+            android:name=".Driver"
+            android:exported="false" />
+        <activity
+            android:name=".DriverOrTrempist"
+            android:exported="false" />
+        <activity
             android:name=".board"
             android:exported="false" />
         <activity
