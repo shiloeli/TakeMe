@@ -8,11 +8,10 @@
     android:background="@drawable/baackground">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF9800"
-        android:onClick="onClickCreate"
         android:text="צור משתמש"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"

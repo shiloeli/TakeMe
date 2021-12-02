@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,42 +18,53 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Activity2 extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    Button button;
     EditText emailAddress;
     EditText password;
-    String txtEmail;
-    String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
-        mAuth = FirebaseAuth.getInstance();
 
         emailAddress = (EditText) findViewById(R.id.emailTxt);
-        txtEmail = emailAddress.getText().toString();
 
         password = (EditText) findViewById(R.id.Passwordtxt);
-        pass = password.getText().toString();
 
+        button = (Button) findViewById(R.id.button_connect);
 
-    }
+        mAuth = FirebaseAuth.getInstance();
 
-    public void onClickCreate(View view) {
-        Intent intenet=new Intent(Activity2.this,DriverOrTrempist.class);
-        Bundle b=new Bundle();
-        startActivity(intenet);
+        button.setOnClickListener(new View.OnClickListener() {
 
-
-        mAuth.createUserWithEmailAndPassword(txtEmail, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(Activity2.this, board.class));
-                } else {
-                    Toast.makeText(Activity2.this, "filed", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+            public void onClick(View view) {
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                String txtEmail = emailAddress.getText().toString();
+                String pass = password.getText().toString();
 
-        }
+                if(TextUtils.isEmpty(txtEmail)){
+                    emailAddress.setError("Email is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass)){
+                    password.setError("Password is required.");
+                }
+
+                mAuth.createUserWithEmailAndPassword(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                     if(task.isSuccessful()){
+                         Toast.makeText(Activity2.this, "User Created.", Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+                     }else{
+                        Toast.makeText(Activity2.this, "Error ! "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                     }
+                    }
+                });
+             }
+        });
     }
+}
