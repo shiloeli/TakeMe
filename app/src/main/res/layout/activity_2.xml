@@ -22,32 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.855" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="זכר"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.725"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="נקבה"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
-
     <EditText
-        android:id="@+id/editTextTextPassword4"
+        android:id="@+id/reg_pass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -79,7 +55,7 @@
         app:layout_constraintVertical_bias="0.54" />
 
     <EditText
-        android:id="@+id/PasswordTxt"
+        android:id="@+id/reg_cv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -111,7 +87,7 @@
         app:layout_constraintVertical_bias="0.059" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/reg_lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
@@ -157,7 +133,7 @@
         app:layout_constraintVertical_bias="0.304" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/reg_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -173,7 +149,7 @@
         app:layout_constraintVertical_bias="0.463" />
 
     <Switch
-        android:id="@+id/switch4"
+        android:id="@+id/reg_passenger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -185,18 +161,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.776" />
 
+    <RadioGroup
+        android:layout_width="80dp"
+        android:layout_height="99dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/reg_male"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:text="זכר" />
+
+        <RadioButton
+            android:id="@+id/reg_female"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="נקבה" />
+    </RadioGroup>
+
     <Switch
-        android:id="@+id/switch5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/reg_driver"
+        android:layout_width="72dp"
+        android:layout_height="45dp"
         android:minHeight="48dp"
         android:text="נהג"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.707"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.698"
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
