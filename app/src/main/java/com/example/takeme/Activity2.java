@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,18 +25,21 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.annotation.Documented;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Activity2 extends AppCompatActivity {
-    public static final String TAG = TAG;
+
+    public static final String TAG = "TAG";
     private FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
     Button button;
     EditText emailAddress, password, name, lastName, phone, id, carType, password2;
     RadioButton male, female;
     Switch driver, passenger;
-    FirebaseFirestore fStore;
     String userID;
+
 
 
     @Override
@@ -59,11 +63,12 @@ public class Activity2 extends AppCompatActivity {
         button = (Button) findViewById(R.id.button_connect);
 
         mAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
 //        if(mAuth.getCurrentUser() != null){
-//            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
-//            finish();
-//        }
+////            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+////            finish();
+////        }
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -72,6 +77,7 @@ public class Activity2 extends AppCompatActivity {
                 String txtEmail = emailAddress.getText().toString();
                 String pass = password.getText().toString();
                 String txtID = id.getText().toString();
+
                 String txtName = name.getText().toString();
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
@@ -85,6 +91,7 @@ public class Activity2 extends AppCompatActivity {
                     password.setError("נדרשת סיסמה");
                     return;
                 }
+
                 if(TextUtils.isEmpty(txtName))
                 {
                     name.setError("נדרש שם");
@@ -123,9 +130,11 @@ public class Activity2 extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+
                          userID=mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference=fStore.collection("users").document(userID);
                          Map<String,Object> user=new HashMap<>();
+
                          user.put("name",txtName);
                          user.put("email",txtEmail);
                          user.put("password",pass);
@@ -135,10 +144,10 @@ public class Activity2 extends AppCompatActivity {
                          user.put("carType",txtCarType);
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
-                             public void onSuccess(Void unused) {
-                                 Log.d(TAG, "onSuccess: user Profile is created for "+userID);
+                    public void onSuccess(Void avoid) {
+                                 Log.d(TAG,"onSuccess: user profile is create for"+ userID);
                              }
-                         })
+                         });
                          startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
                      }else{
                         Toast.makeText(Activity2.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();

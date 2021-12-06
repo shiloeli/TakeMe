@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String StringtxtEmail=txtName.getText().toString();
                 String StringtxtPass=txtPassword.getText().toString();
+
+                if(TextUtils.isEmpty(StringtxtEmail)){
+                    txtName.setError("נדרשת כתובת אימייל");
+                    return;
+                }
+                if(TextUtils.isEmpty(StringtxtPass)){
+                    txtPassword.setError("נדרשת סיסמה");
+                    return;
+                }
 
                 mAuth.signInWithEmailAndPassword(StringtxtEmail, StringtxtPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
