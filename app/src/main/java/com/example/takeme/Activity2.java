@@ -124,16 +124,12 @@ public class Activity2 extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
-                         Map<String, Object> user = new HashMap<>();
-                         user.put("name",txtName);
-                         user.put("email",txtEmail);
-                         user.put("password",pass);
-                         user.put("lastName",txtLastName);
-                         user.put("id",txtID);
-                         user.put("phone",txtPhone);
-                         user.put("carType",txtCarType);
+
+                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType);
+
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
                              public void onSuccess(Void avoid) {
