@@ -8,6 +8,25 @@ import android.view.View;
 
 public class Driver extends AppCompatActivity {
 
+    String typeCar;
+    int rate;
+
+    public String getTypeCar(){
+        return this.typeCar;
+    }
+
+    public int getRate(){
+        return this.rate;
+    }
+
+    public Driver(){
+
+    }
+
+    public Driver(String typeCar){
+        this.typeCar = typeCar;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

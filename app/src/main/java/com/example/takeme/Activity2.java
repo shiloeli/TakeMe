@@ -55,7 +55,6 @@ public class Activity2 extends AppCompatActivity {
         female = (RadioButton) findViewById(R.id.reg_female);
         driver = (Switch) findViewById(R.id.reg_driver);
         passenger = (Switch) findViewById(R.id.reg_passenger);
-
         button = (Button) findViewById(R.id.button_connect);
 
         mAuth = FirebaseAuth.getInstance();
@@ -76,7 +75,12 @@ public class Activity2 extends AppCompatActivity {
                 String txtName = name.getText().toString();
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
-                String txtCarType=carType.getText().toString();
+                String txtCarType = carType.getText().toString();
+                boolean boolDriver = driver.isChecked();
+                boolean boolPassenger = passenger.isChecked();
+
+                System.out.println("------------===------------"+boolDriver+"--------------------====-------------");
+
 
                 if(TextUtils.isEmpty(txtEmail)){
                     emailAddress.setError("נדרשת כתובת אימייל");
@@ -127,8 +131,7 @@ public class Activity2 extends AppCompatActivity {
 
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
-
-                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType);
+                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType, boolDriver, boolPassenger);
 
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override

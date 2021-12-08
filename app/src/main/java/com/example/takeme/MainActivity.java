@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
-        buttLog = (Button) findViewById(R.id.btnSend);
+        buttLog = (Button)findViewById(R.id.btnSend);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickReg(View view) {
         Intent intenet=new Intent(MainActivity.this,Activity2.class);
-        Bundle b=new Bundle();
+//        Bundle b=new Bundle();
         startActivity(intenet);
     }
 
