@@ -1,40 +1,48 @@
 package com.example.takeme;
 
+import android.widget.EditText;
+
 public class User {
-    private String cv;
-    private String userName;
-    private String email;
-    private String name;
-    private String lastName;
-    private String phone;
-    private String carType;
-    private Boolean gender;
-    private Boolean driver;
-    private Boolean passenger;
 
+    String name, lastName, email, phone, id, carType;
 
+    public User(){
 
-
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email) {
-        this.userName = username;
+    public String getName(){
+        return name;
+    }
+
+    public String getLastName(){
+        return lastName;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public String getPhone(){
+        return phone;
+    }
+
+    public String getId(){
+        return id;
+    }
+
+    public String getCarType(){
+        return carType;
+    }
+
+
+    public User(String name, String lastName, String email, String phone, String id, String catType){
+        this.name = name;
+        this.lastName = lastName;
         this.email = email;
+        this.phone = phone;
+        this.id = id;
+        this.carType = catType;
     }
-    public User(String cv, String name, String email, String lastName, String phone, String carType, Boolean gender, Boolean driver, Boolean passenger)
-    {
-        this.cv=cv;
-        this.name=name;
-        this.lastName=lastName;
-        this.phone=phone;
-        this.carType=carType;
-        this.gender=gender;
-        this.driver=driver;
-        this.passenger=passenger;
-        this.email=email;
 
-    }
 
 }

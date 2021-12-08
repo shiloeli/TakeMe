@@ -140,10 +140,12 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
-                         User user2=new User(txtID,txtName,txtEmail,txtLastName,txtPhone,txtCarType,male.isChecked(),driver.isChecked(),passenger.isChecked());
+//                         User user2=new User(txtID,txtName,txtEmail,txtLastName,txtPhone,txtCarType,male.isChecked(),driver.isChecked(),passenger.isChecked());
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
+
 //                         fStore.get
 //                         Map<String, Object> user = new HashMap<>();
 //                         user.put("name",txtName);
@@ -153,7 +155,12 @@ public class Activity2 extends AppCompatActivity {
 //                         user.put("id",txtID);
 //                         user.put("phone",txtPhone);
 //                         user.put("carType",txtCarType);
-                         documentReference.set(user2).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                         documentReference.set(user2).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+
+                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType);
+
+                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
                              public void onSuccess(Void avoid) {
                                  Log.d(TAG,"onSuccess: user profile is create for"+ userID);
