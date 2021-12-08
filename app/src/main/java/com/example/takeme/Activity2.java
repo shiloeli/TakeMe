@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -23,23 +23,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.lang.annotation.Documented;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Activity2 extends AppCompatActivity {
-
     public static final String TAG = "TAG";
     private FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     Button button;
-    EditText emailAddress, password, name, lastName, phone, id, carType, password2;
+    EditText emailAddress, password, name, lastName, phone, cv, carType, password2;
     RadioButton male, female;
     Switch driver, passenger;
     String userID;
-
 
 
     @Override
@@ -53,7 +50,7 @@ public class Activity2 extends AppCompatActivity {
         name = (EditText) findViewById(R.id.Nametxt);
         lastName = (EditText) findViewById(R.id.reg_lastName);
         phone = (EditText) findViewById(R.id.phoneNumbre);
-        id = (EditText) findViewById(R.id.reg_cv);
+        cv = (EditText) findViewById(R.id.reg_cv);
         carType = (EditText) findViewById(R.id.reg_car);
         male = (RadioButton) findViewById(R.id.reg_male);
         female = (RadioButton) findViewById(R.id.reg_female);
@@ -76,22 +73,12 @@ public class Activity2 extends AppCompatActivity {
             public void onClick(View view) {
                 String txtEmail = emailAddress.getText().toString();
                 String pass = password.getText().toString();
-                String txtID = id.getText().toString();
-
+                String pass2 = password2.getText().toString();
+                String txtID = cv.getText().toString();
                 String txtName = name.getText().toString();
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
                 String txtCarType=carType.getText().toString();
-
-                if(TextUtils.isEmpty(txtEmail)){
-                    emailAddress.setError("נדרשת כתובת אימייל");
-                    return;
-                }
-                if(TextUtils.isEmpty(pass)){
-                    password.setError("נדרשת סיסמה");
-                    return;
-                }
-
                 if(TextUtils.isEmpty(txtName))
                 {
                     name.setError("נדרש שם");
@@ -102,9 +89,20 @@ public class Activity2 extends AppCompatActivity {
                     lastName.setError("נדרש שם משפחה");
                     return;
                 }
+
+                if(TextUtils.isEmpty(txtEmail)){
+                    emailAddress.setError("נדרשת כתובת אימייל");
+                    return;
+                }
                 if(TextUtils.isEmpty(txtPhone))
                 {
                     phone.setError("נדרש מספר פלאפון");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(txtID))
+                {
+                    cv.setError("נדרש מספר תעודת זהות");
                     return;
                 }
                 if(TextUtils.isEmpty(txtCarType)&&driver.isChecked())
@@ -112,39 +110,52 @@ public class Activity2 extends AppCompatActivity {
                     carType.setError("נדרש סוג רכב");
                     return;
                 }
-                if(TextUtils.isEmpty(txtID))
+                if(TextUtils.isEmpty(pass)){
+                    password.setError("נדרשת סיסמה");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass2)){
+                    password2.setError("נדרש אימות סיסמה");
+                    return;
+                }
+                if(!pass.equals(pass2))
                 {
-                    id.setError("נדרש מספר תעודת זהות");
+                    password2.setError("הסיסמאות אינן תואמות!");
                     return;
                 }
                 if(!driver.isChecked() && !passenger.isChecked())
                 {
-                    driver.setError("נא לבחור אחת מהאופציות");
-                    passenger.setError("נא לבחור אחת מהאופציות");
+                    driver.setError("");
+                    passenger.setError("");
                     return;
                 }
-
+                if(!female.isChecked() && !male.isChecked())
+                {
+                    male.setError("");
+                    female.setError("");
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
+                         User user2=new User(txtID,txtName,txtEmail,txtLastName,txtPhone,txtCarType,male.isChecked(),driver.isChecked(),passenger.isChecked());
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
-
-                         userID=mAuth.getCurrentUser().getUid();
-                         DocumentReference documentReference=fStore.collection("users").document(userID);
-                         Map<String,Object> user=new HashMap<>();
-
-                         user.put("name",txtName);
-                         user.put("email",txtEmail);
-                         user.put("password",pass);
-                         user.put("lastName",txtLastName);
-                         user.put("id",txtID);
-                         user.put("phone",txtPhone);
-                         user.put("carType",txtCarType);
-                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                         userID = mAuth.getCurrentUser().getUid();
+                         DocumentReference documentReference = fStore.collection("users").document(userID);
+//                         fStore.get
+//                         Map<String, Object> user = new HashMap<>();
+//                         user.put("name",txtName);
+//                         user.put("email",txtEmail);
+//                         user.put("password",pass);
+//                         user.put("lastName",txtLastName);
+//                         user.put("id",txtID);
+//                         user.put("phone",txtPhone);
+//                         user.put("carType",txtCarType);
+                         documentReference.set(user2).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
-                    public void onSuccess(Void avoid) {
+                             public void onSuccess(Void avoid) {
                                  Log.d(TAG,"onSuccess: user profile is create for"+ userID);
                              }
                          });
