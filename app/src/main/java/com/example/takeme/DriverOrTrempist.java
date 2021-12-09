@@ -18,9 +18,7 @@ public class DriverOrTrempist extends AppCompatActivity {
     }
 
     public void onClickDriver(View view) {
-
-        Intent intenet=new Intent(DriverOrTrempist.this,Driver.class);
-        Bundle b=new Bundle();
+        Intent intenet=new Intent(DriverOrTrempist.this, TrempsList.class);
         startActivity(intenet);
 
     }

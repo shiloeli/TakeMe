@@ -61,11 +61,6 @@ public class Activity2 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-//        if(mAuth.getCurrentUser() != null){
-////            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
-////            finish();
-////        }
-
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,10 +73,6 @@ public class Activity2 extends AppCompatActivity {
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
                 String  txtCarType = carType.getText().toString();
-                boolean boolDriver = driver.isChecked();
-                boolean boolPassenger = passenger.isChecked();
-
-
 
                 if(TextUtils.isEmpty(txtName))
                 {
@@ -109,6 +100,7 @@ public class Activity2 extends AppCompatActivity {
                     cv.setError("נדרש מספר תעודת זהות");
                     return;
                 }
+
                 if(TextUtils.isEmpty(txtCarType)&&driver.isChecked())
                 {
                     carType.setError("נדרש סוג רכב");
@@ -146,12 +138,11 @@ public class Activity2 extends AppCompatActivity {
                      if(task.isSuccessful()){
 
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
-
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
 
-                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType, boolDriver, boolPassenger);
 
+                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID,male.isChecked());
 
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override

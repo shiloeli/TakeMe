@@ -1,57 +1,55 @@
 package com.example.takeme;
 
+import android.text.BoringLayout;
 import android.widget.EditText;
 
 public class User {
+    String name, lastName, email, phone, id;
+    Boolean gender;
 
-    String name, lastName, email, phone, id, carType;
-    Driver driver;
-    boolean passenger;
-    public User(){
-
+    public String getGender()
+    {
+        if (gender == true)
+            return "Male";
+        return "Female";
     }
 
-    public String getName(){
+    public String getName()
+    {
         return name;
     }
 
-    public String getLastName(){
+    public String getLastName()
+    {
         return lastName;
     }
 
-    public String getEmail(){
+    public String getEmail()
+    {
         return email;
     }
 
-    public String getPhone(){
+    public String getPhone()
+    {
         return phone;
     }
 
-    public String getId(){
+    public String getId()
+    {
         return id;
     }
 
-    public Driver getDriver(){
-        return driver;
+    public User(){
+
     }
-
-    public boolean getPassenger(){
-        return passenger;
-    }
-
-
-    public User(String name, String lastName, String email, String phone, String id, String catType, Boolean driver, Boolean passenger){
+    public User(String name, String lastName, String email, String phone, String id, Boolean gender)
+    {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.id = id;
-        this.passenger = passenger;
-
-        if(driver){
-            this.driver = new Driver(carType);
-        }
+        this.gender = gender;
     }
-
 
 }
