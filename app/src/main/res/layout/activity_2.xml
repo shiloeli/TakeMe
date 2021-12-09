@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="תעודת זהות"
-        android:inputType="textPassword"
+        android:inputType="number|textPassword"
         android:minHeight="48dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,7 +150,7 @@
 
     <Switch
         android:id="@+id/reg_passenger"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="נוסע"
@@ -162,7 +162,7 @@
         app:layout_constraintVertical_bias="0.776" />
 
     <RadioGroup
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="99dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -174,20 +174,20 @@
 
         <RadioButton
             android:id="@+id/reg_male"
-            android:layout_width="76dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="זכר" />
 
         <RadioButton
             android:id="@+id/reg_female"
-            android:layout_width="75dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="נקבה" />
     </RadioGroup>
 
     <Switch
         android:id="@+id/reg_driver"
-        android:layout_width="72dp"
+        android:layout_width="100dp"
         android:layout_height="45dp"
         android:minHeight="48dp"
         android:text="נהג"

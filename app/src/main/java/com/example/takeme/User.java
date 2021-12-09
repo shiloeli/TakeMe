@@ -5,8 +5,8 @@ import android.widget.EditText;
 public class User {
 
     String name, lastName, email, phone, id, carType;
-    Driver driver, passenger;
-
+    Driver driver;
+    boolean passenger;
     public User(){
 
     }
@@ -35,7 +35,7 @@ public class User {
         return driver;
     }
 
-    public Driver getPassenger(){
+    public boolean getPassenger(){
         return passenger;
     }
 
@@ -46,13 +46,10 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.id = id;
+        this.passenger = passenger;
 
         if(driver){
             this.driver = new Driver(carType);
-        }
-
-        if(passenger){
-//            this.passenger = new P
         }
     }
 

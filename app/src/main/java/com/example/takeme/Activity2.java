@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,25 +72,16 @@ public class Activity2 extends AppCompatActivity {
             public void onClick(View view) {
                 String txtEmail = emailAddress.getText().toString();
                 String pass = password.getText().toString();
+                String pass2 = password2.getText().toString();
                 String txtID = cv.getText().toString();
                 String txtName = name.getText().toString();
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
-                String txtCarType = carType.getText().toString();
+                String  txtCarType = carType.getText().toString();
                 boolean boolDriver = driver.isChecked();
                 boolean boolPassenger = passenger.isChecked();
 
-                System.out.println("------------===------------"+boolDriver+"--------------------====-------------");
 
-
-                if(TextUtils.isEmpty(txtEmail)){
-                    emailAddress.setError("נדרשת כתובת אימייל");
-                    return;
-                }
-                if(TextUtils.isEmpty(pass)){
-                    password.setError("נדרשת סיסמה");
-                    return;
-                }
 
                 if(TextUtils.isEmpty(txtName))
                 {
@@ -101,9 +93,20 @@ public class Activity2 extends AppCompatActivity {
                     lastName.setError("נדרש שם משפחה");
                     return;
                 }
+
+                if(TextUtils.isEmpty(txtEmail)){
+                    emailAddress.setError("נדרשת כתובת אימייל");
+                    return;
+                }
                 if(TextUtils.isEmpty(txtPhone))
                 {
                     phone.setError("נדרש מספר פלאפון");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(txtID))
+                {
+                    cv.setError("נדרש מספר תעודת זהות");
                     return;
                 }
                 if(TextUtils.isEmpty(txtCarType)&&driver.isChecked())
@@ -111,15 +114,29 @@ public class Activity2 extends AppCompatActivity {
                     carType.setError("נדרש סוג רכב");
                     return;
                 }
-                if(TextUtils.isEmpty(txtID))
+                if(!driver.isChecked())
                 {
-                    cv.setError("נדרש מספר תעודת זהות");
+                    carType.setEnabled(false);
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pass)){
+                    password.setError("נדרשת סיסמה");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass2)){
+                    password2.setError("נדרש אימות סיסמה");
+                    return;
+                }
+                if(!pass.equals(pass2))
+                {
+                    password2.setError("הסיסמאות אינן תואמות!");
                     return;
                 }
                 if(!driver.isChecked() && !passenger.isChecked())
                 {
-                    driver.setError("נא לבחור אחת מהאופציות");
-                    passenger.setError("נא לבחור אחת מהאופציות");
+                    driver.setError("");
+                    passenger.setError("");
                     return;
                 }
 
@@ -127,11 +144,14 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
+
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
 
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
+
                          User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType, boolDriver, boolPassenger);
+
 
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
