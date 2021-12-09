@@ -6,21 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class DriverOrTrempist extends AppCompatActivity {
+public class TrempsList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_or_trempist);
+        setContentView(R.layout.activity_driver);
     }
 
-    public void onClickDriver(View view) {
-        Intent intenet=new Intent(DriverOrTrempist.this, TrempsList.class);
+    public void onClickCreateTremp(View view) {
+        Intent intenet=new Intent(TrempsList.this,Tremp.class);
         Bundle b=new Bundle();
         startActivity(intenet);
-
     }
 
-    public void onClickTrempist(View view) {
+    public void onClickMyTremps(View view) {
     }
 }

@@ -62,11 +62,6 @@ public class Activity2 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-//        if(mAuth.getCurrentUser() != null){
-////            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
-////            finish();
-////        }
-
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -105,11 +100,6 @@ public class Activity2 extends AppCompatActivity {
                     cv.setError("נדרש מספר תעודת זהות");
                     return;
                 }
-                if(TextUtils.isEmpty(txtCarType)&&driver.isChecked())
-                {
-                    carType.setError("נדרש סוג רכב");
-                    return;
-                }
                 if(TextUtils.isEmpty(pass)){
                     password.setError("נדרשת סיסמה");
                     return;
@@ -140,26 +130,10 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
-//                         User user2=new User(txtID,txtName,txtEmail,txtLastName,txtPhone,txtCarType,male.isChecked(),driver.isChecked(),passenger.isChecked());
                          Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
-
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
-
-//                         fStore.get
-//                         Map<String, Object> user = new HashMap<>();
-//                         user.put("name",txtName);
-//                         user.put("email",txtEmail);
-//                         user.put("password",pass);
-//                         user.put("lastName",txtLastName);
-//                         user.put("id",txtID);
-//                         user.put("phone",txtPhone);
-//                         user.put("carType",txtCarType);
-//                         documentReference.set(user2).addOnSuccessListener(new OnSuccessListener<Void>() {
-
-
-                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID, txtCarType);
-
+                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID,male.isChecked());
                          documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                              @Override
                              public void onSuccess(Void avoid) {
