@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickReg(View view) {
-        Intent intenet=new Intent(MainActivity.this,Activity2.class);
+        Intent intenet=new Intent(MainActivity.this, UserRegister.class);
         Bundle b=new Bundle();
         startActivity(intenet);
     }

@@ -21,7 +21,9 @@ public class DriverInformation extends AppCompatActivity {
     }
 
     public void onClickCreate(View view) {
-        int StringNumberCar=Integer.parseInt(numbertxt.getText().toString());
+        int StringNumberCar=-1;
+        if (!TextUtils.isEmpty(numbertxt.getText().toString()))
+             StringNumberCar=Integer.parseInt(numbertxt.getText().toString());
         String StringTypeCar=typetxt.getText().toString();
         String StringColor=colortxt.getText().toString();
         if(TextUtils.isEmpty(StringTypeCar))

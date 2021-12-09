@@ -48,6 +48,7 @@ public class User {
         this.id = id;
         this.gender = gender;
     }
+    public User(){};
 
 
 }
