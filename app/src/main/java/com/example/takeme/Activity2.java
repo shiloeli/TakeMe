@@ -166,7 +166,9 @@ public class Activity2 extends AppCompatActivity {
                                  Log.d(TAG,"onSuccess: user profile is create for"+ userID);
                              }
                          });
-                         startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+                         if(!driver.isChecked())
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                         else startActivity(new Intent(getApplicationContext(), DriverInformation.class));
                      }else{
                         Toast.makeText(Activity2.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                      }
