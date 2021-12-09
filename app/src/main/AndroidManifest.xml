@@ -16,7 +16,7 @@
             android:name=".Tremp"
             android:exported="false" />
         <activity
-            android:name=".Driver"
+            android:name=".TrempsList"
             android:exported="false" />
         <activity
             android:name=".DriverOrTrempist"
