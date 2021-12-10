@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -23,17 +21,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Activity2 extends AppCompatActivity {
+public class UserRegister extends AppCompatActivity {
     public static final String TAG = "TAG";
     private FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     Button button;
-    EditText emailAddress, password, name, lastName, phone, cv, carType, password2;
+    EditText emailAddress, password, name, lastName, phone, cv, password2;
     RadioButton male, female;
     Switch driver, passenger;
     String userID;
@@ -51,7 +45,6 @@ public class Activity2 extends AppCompatActivity {
         lastName = (EditText) findViewById(R.id.reg_lastName);
         phone = (EditText) findViewById(R.id.phoneNumbre);
         cv = (EditText) findViewById(R.id.reg_cv);
-        carType = (EditText) findViewById(R.id.reg_car);
         male = (RadioButton) findViewById(R.id.reg_male);
         female = (RadioButton) findViewById(R.id.reg_female);
         driver = (Switch) findViewById(R.id.reg_driver);
@@ -72,7 +65,6 @@ public class Activity2 extends AppCompatActivity {
                 String txtName = name.getText().toString();
                 String txtLastName = lastName.getText().toString();
                 String txtPhone = phone.getText().toString();
-                String  txtCarType = carType.getText().toString();
 
                 if(TextUtils.isEmpty(txtName))
                 {
@@ -101,17 +93,6 @@ public class Activity2 extends AppCompatActivity {
                     return;
                 }
 
-                if(TextUtils.isEmpty(txtCarType)&&driver.isChecked())
-                {
-                    carType.setError("נדרש סוג רכב");
-                    return;
-                }
-                if(!driver.isChecked())
-                {
-                    carType.setEnabled(false);
-                    return;
-                }
-
                 if(TextUtils.isEmpty(pass)){
                     password.setError("נדרשת סיסמה");
                     return;
@@ -137,7 +118,8 @@ public class Activity2 extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if(task.isSuccessful()){
 
-                         Toast.makeText(Activity2.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(UserRegister.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+
                          userID = mAuth.getCurrentUser().getUid();
                          DocumentReference documentReference = fStore.collection("users").document(userID);
 
@@ -150,9 +132,11 @@ public class Activity2 extends AppCompatActivity {
                                  Log.d(TAG,"onSuccess: user profile is create for"+ userID);
                              }
                          });
-                         startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+                         if(!driver.isChecked())
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                         else startActivity(new Intent(getApplicationContext(), DriverInformation.class));
                      }else{
-                        Toast.makeText(Activity2.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserRegister.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                      }
                     }
                 });

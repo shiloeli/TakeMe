@@ -38,6 +38,7 @@ public class MyTremp extends AppCompatActivity {
         seatsNum = (EditText) findViewById(R.id.a_numberOfSeats);
         trempButton = (Button) findViewById(R.id.buttonCreateTremp);
 
+        mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
         trempButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,6 @@ public class MyTremp extends AppCompatActivity {
                 DocumentReference documentReference = fStore.collection("tremps").document(userID);
                 Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
                 documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
-               Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d("TAG","onSuccess: tremp is create for"+ userID);

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".DriverInformation"
+            android:exported="false" />
+        <activity
             android:name=".MyTremp"
             android:exported="false" />
         <activity
@@ -22,7 +25,7 @@
             android:name=".Board"
             android:exported="false" />
         <activity
-            android:name=".Activity2"
+            android:name=".UserRegister"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
