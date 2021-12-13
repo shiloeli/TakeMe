@@ -5,11 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class DriverInformation extends AppCompatActivity {
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+public class DriverInformation extends AppCompatActivity {
+    String userID;
+    public static final String TAG = "TAG";
+    FirebaseFirestore fStore;
     EditText colortxt,numbertxt,typetxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +25,7 @@ public class DriverInformation extends AppCompatActivity {
         colortxt=(EditText)findViewById(R.id.ColorCarText);
         numbertxt=(EditText)findViewById(R.id.NumberCarText);
         typetxt=(EditText)findViewById(R.id.typeCarText);
+        fStore=FirebaseFirestore.getInstance();
     }
 
     public void onClickCreate(View view) {
@@ -41,6 +49,22 @@ public class DriverInformation extends AppCompatActivity {
             colortxt.setError("נדרש צבע של הרכב");
             return;
         }
-        startActivity(new Intent(DriverInformation.this,MainActivity.class));
+        User user = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+             user = (User) extras.get("userObj");
+             userID=(String) extras.get("UID");
+        }
+        Driver driver =new Driver(user,StringNumberCar,StringTypeCar,StringColor);
+        DocumentReference documentReference = fStore.collection("users").document(userID);
+        documentReference.set(driver).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void avoid) {
+                Log.d(TAG,"onSuccess: Driver profile is create for"+ userID);
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
+
+
     }
 }
