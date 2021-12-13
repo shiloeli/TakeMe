@@ -13,7 +13,7 @@
             android:name=".DriverInformation"
             android:exported="false" />
         <activity
-            android:name=".MyTremp"
+            android:name=".NewTremp"
             android:exported="false" />
         <activity
             android:name=".TrempsList"

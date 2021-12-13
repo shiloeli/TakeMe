@@ -9,17 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.gms.common.internal.BaseGmsClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import io.grpc.internal.JsonUtil;
-
-public class MyTremp extends AppCompatActivity {
+public class NewTremp extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
     EditText srcCity,destCity, day, hour, date, seatsNum;

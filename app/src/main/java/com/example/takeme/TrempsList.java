@@ -15,7 +15,7 @@ public class TrempsList extends AppCompatActivity {
     }
 
     public void onClickCreateTremp(View view) {
-        Intent intenet=new Intent(TrempsList.this, MyTremp.class);
+        Intent intenet=new Intent(TrempsList.this, NewTremp.class);
         startActivity(intenet);
     }
 
