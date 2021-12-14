@@ -24,5 +24,7 @@ public class DriverOrTrempist extends AppCompatActivity {
     }
 
     public void onClickTrempist(View view) {
+        Intent intenet=new Intent(DriverOrTrempist.this, Board.class);
+        startActivity(intenet);
     }
 }
