@@ -116,31 +116,31 @@ public class UserRegister extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                     if(task.isSuccessful()){
-
-                         Toast.makeText(UserRegister.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
-
-                         userID = mAuth.getCurrentUser().getUid();
-                         DocumentReference documentReference = fStore.collection("users").document(userID);
-
-
-                         User user = new User(txtName, txtLastName, txtEmail,txtPhone, txtID,male.isChecked());
-
-                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                             @Override
-                             public void onSuccess(Void avoid) {
-                                 Log.d(TAG,"onSuccess: user profile is create for"+ userID);
-                             }
-                         });
-                         if(!driver.isChecked())
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                         else startActivity(new Intent(getApplicationContext(), DriverInformation.class));
-                     }else{
-                        Toast.makeText(UserRegister.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                     }
+                        if (task.isSuccessful()) {
+                            Toast.makeText(UserRegister.this, "משתמש נוצר", Toast.LENGTH_SHORT).show();
+                            if (driver.isChecked()) {
+                                Intent intent = new Intent(UserRegister.this, DriverInformation.class);
+                                intent.putExtra("name", txtName).putExtra("lastName", txtLastName).putExtra("email", txtEmail)
+                                        .putExtra("phone", txtPhone).putExtra("id", txtID).putExtra("male", male.isChecked());
+                                startActivity(intent);
+                            } else {
+                                userID = mAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = fStore.collection("users").document(userID);
+                                User user = new User(txtName, txtLastName, txtEmail, txtPhone, txtID, male.isChecked());
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void avoid) {
+                                        Log.d(TAG, "onSuccess: user profile is create for" + userID);
+                                    }
+                                });
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                        } else {
+                            Toast.makeText(UserRegister.this, "שגיאה!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
-             }
+            }
         });
     }
 }

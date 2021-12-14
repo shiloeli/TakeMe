@@ -50,6 +50,7 @@ public class User {
         this.phone = phone;
         this.id = id;
         this.gender = gender;
+
     }
 
 }
