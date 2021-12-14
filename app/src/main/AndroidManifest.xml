@@ -10,13 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".TrempList"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistDashboard"
+            android:exported="false" />
+        <activity
             android:name=".DriverInformation"
             android:exported="false" />
         <activity
             android:name=".NewTremp"
             android:exported="false" />
         <activity
-            android:name=".TrempsList"
+            android:name=".DriverDashboard"
             android:exported="false" />
         <activity
             android:name=".DriverOrTrempist"

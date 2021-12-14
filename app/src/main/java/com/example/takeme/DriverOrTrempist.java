@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 public class DriverOrTrempist extends AppCompatActivity {
 
 
@@ -18,11 +16,14 @@ public class DriverOrTrempist extends AppCompatActivity {
     }
 
     public void onClickDriver(View view) {
-        Intent intenet=new Intent(DriverOrTrempist.this, TrempsList.class);
-        startActivity(intenet);
+        Intent intent=new Intent(DriverOrTrempist.this, DriverDashboard.class);
+        startActivity(intent);
 
     }
 
+
     public void onClickTrempist(View view) {
+        Intent intent=new Intent(DriverOrTrempist.this, TrempistDashboard.class);
+        startActivity(intent);
     }
 }
