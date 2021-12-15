@@ -2,8 +2,10 @@ package com.example.takeme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.print.PrintHelper;
 
 import android.content.Intent;
+import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
