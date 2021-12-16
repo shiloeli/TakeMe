@@ -17,8 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DriverInformation extends AppCompatActivity {
     public static final String TAG = "TAG";
-    FirebaseAuth mAuth;
-    FirebaseFirestore fStore;
     EditText colortxt,numbertxt,typetxt;
     Button driverButton;
     String userID;
@@ -31,10 +29,6 @@ public class DriverInformation extends AppCompatActivity {
         numbertxt=(EditText)findViewById(R.id.NumberCarText);
         typetxt=(EditText)findViewById(R.id.typeCarText);
         driverButton=(Button)findViewById(R.id.buttonDriver1);
-
-        mAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
-
         driverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +53,6 @@ public class DriverInformation extends AppCompatActivity {
                     return;
                 }
 
-                userID = mAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = fStore.collection("users").document(userID);
 
                 String name = getIntent().getStringExtra("name");
                 String lastName = getIntent().getStringExtra("lastName");
@@ -68,13 +60,7 @@ public class DriverInformation extends AppCompatActivity {
                 String phone = getIntent().getStringExtra("phone");
                 String id = getIntent().getStringExtra("id");
                 Boolean male = getIntent().getBooleanExtra("male", true);
-                Driver userDriver = new Driver(name, lastName, email, phone, id, male ,StringNumberCar,StringTypeCar,StringColor);
-                documentReference.set(userDriver).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void avoid) {
-                        Log.d(TAG, "onSuccess: user profile is create for" + userID);
-                    }
-                });
+                DataBase.createDriver("users",name, lastName, email, phone, id ,StringNumberCar,StringTypeCar,StringColor, male);
                 startActivity(new Intent(DriverInformation.this,MainActivity.class));
             }
         });

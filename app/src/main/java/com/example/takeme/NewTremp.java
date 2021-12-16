@@ -16,8 +16,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NewTremp extends AppCompatActivity {
-    FirebaseFirestore fStore;
-    FirebaseAuth mAuth;
+
     EditText srcCity,destCity, day, hour, date, seatsNum;
     Button trempButton;
     String userID;
@@ -34,8 +33,8 @@ public class NewTremp extends AppCompatActivity {
         seatsNum = (EditText) findViewById(R.id.a_numberOfSeats);
         trempButton = (Button) findViewById(R.id.buttonCreateTremp);
 
-        mAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
+//        fStore = FirebaseFirestore.getInstance();
 
         trempButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,15 +78,7 @@ public class NewTremp extends AppCompatActivity {
                     return;
                 }
 
-                userID = mAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = fStore.collection("tremps").document(userID);
-                Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
-                documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.d("TAG","onSuccess: tremp is create for"+ userID);
-                    }
-                });
+                DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
                 startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
             }
         });

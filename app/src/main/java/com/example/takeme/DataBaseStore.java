@@ -1,4 +1,5 @@
 package com.example.takeme;
 
-public class userDB {
+public class DataBaseStore {
+
 }

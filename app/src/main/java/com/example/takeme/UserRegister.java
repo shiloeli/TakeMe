@@ -24,8 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserRegister extends AppCompatActivity {
     public static final String TAG = "TAG";
-    private FirebaseAuth mAuth;
-    FirebaseFirestore fStore;
     Button button;
     EditText emailAddress, password, name, lastName, phone, cv, password2;
     RadioButton male, female;
@@ -50,9 +48,6 @@ public class UserRegister extends AppCompatActivity {
         driver = (Switch) findViewById(R.id.reg_driver);
         passenger = (Switch) findViewById(R.id.reg_passenger);
         button = (Button) findViewById(R.id.button_connect);
-
-        mAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -113,7 +108,7 @@ public class UserRegister extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.createUserWithEmailAndPassword(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                DataBase.CreateUser(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -124,15 +119,7 @@ public class UserRegister extends AppCompatActivity {
                                         .putExtra("phone", txtPhone).putExtra("id", txtID).putExtra("male", male.isChecked());
                                 startActivity(intent);
                             } else {
-                                userID = mAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("users").document(userID);
-                                User user = new User(txtName, txtLastName, txtEmail, txtPhone, txtID, male.isChecked());
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void avoid) {
-                                        Log.d(TAG, "onSuccess: user profile is create for" + userID);
-                                    }
-                                });
+                                DataBase.createUser("users",txtName, txtLastName, txtEmail, txtPhone, txtID, male.isChecked());
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
                         } else {
@@ -142,5 +129,8 @@ public class UserRegister extends AppCompatActivity {
                 });
             }
         });
+
+
+
     }
 }
