@@ -52,7 +52,7 @@ public class Board extends AppCompatActivity  {
                 holder.hour.setText(model.getHour());
                 holder.day.setText(model.getDay());
                 holder.numberOfSeats.setText(model.getSeats());
-//                holder.position=position;
+                holder.position=holder.getAdapterPosition();
             }
 
         };
@@ -71,7 +71,7 @@ public class Board extends AppCompatActivity  {
         private TextView hour;
         private TextView day;
         private TextView numberOfSeats;
-//        int position;
+        int position;
 
 
         public TrempViewHolder (@NonNull View itemView) {
@@ -86,7 +86,7 @@ public class Board extends AppCompatActivity  {
 
                 @Override
                 public void onClick(View v) {
-                    Log.d("demo","onClick: item clicked");
+                    Log.d("demo","onClick: item clicked "+position);
 
                 }
             });
