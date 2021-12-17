@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.google.firebase.firestore.Query;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class Board extends AppCompatActivity  {
         fStore = FirebaseFirestore.getInstance();
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
+
         Query query = fStore.collection("tremps").orderBy("seats");
 
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -50,7 +52,9 @@ public class Board extends AppCompatActivity  {
                 holder.hour.setText(model.getHour());
                 holder.day.setText(model.getDay());
                 holder.numberOfSeats.setText(model.getSeats());
+//                holder.position=position;
             }
+
         };
         fireStoreTremps.setHasFixedSize(true);
         fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +71,7 @@ public class Board extends AppCompatActivity  {
         private TextView hour;
         private TextView day;
         private TextView numberOfSeats;
+//        int position;
 
 
         public TrempViewHolder (@NonNull View itemView) {
@@ -76,7 +81,15 @@ public class Board extends AppCompatActivity  {
             hour = itemView.findViewById(R.id.hourTremp);
             day = itemView.findViewById(R.id.driverDay);
             numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+            itemView.setOnClickListener(new View.OnClickListener(){
 
+
+                @Override
+                public void onClick(View v) {
+                    Log.d("demo","onClick: item clicked");
+
+                }
+            });
         }
     }
 
