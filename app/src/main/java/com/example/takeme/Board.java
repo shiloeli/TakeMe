@@ -53,6 +53,8 @@ public class Board extends AppCompatActivity  {
                 holder.day.setText(model.getDay());
                 holder.numberOfSeats.setText(model.getSeats());
                 holder.position=holder.getAdapterPosition();
+                Tremp tremp=options.getSnapshots().get(position);
+                holder.tremp=tremp;
             }
 
         };
@@ -72,6 +74,7 @@ public class Board extends AppCompatActivity  {
         private TextView day;
         private TextView numberOfSeats;
         int position;
+        Tremp tremp;
 
 
         public TrempViewHolder (@NonNull View itemView) {
@@ -86,7 +89,7 @@ public class Board extends AppCompatActivity  {
 
                 @Override
                 public void onClick(View v) {
-                    Log.d("demo","onClick: item clicked "+position);
+                    Log.d("demo","onClick: item clicked "+position+"tremp"+tremp.dest);
 
                 }
             });
