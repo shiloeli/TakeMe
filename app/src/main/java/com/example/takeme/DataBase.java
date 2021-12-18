@@ -34,13 +34,13 @@ public class DataBase {
 
     }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,String txtSeatsNum){
-        String ID = mAuth.getCurrentUser().getUid();
-        documentReference = fStore.collection(collection).document(ID);
+        String userDbId = mAuth.getCurrentUser().getUid();
+        documentReference = fStore.collection(collection).document(userDbId);
         Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
-                Log.d(TAG, "onSuccess: Tremp is create for" + ID);
+                Log.d(TAG, "onSuccess: Tremp is create for" + userDbId);
             }
         });
 
