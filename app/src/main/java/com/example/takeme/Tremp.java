@@ -18,7 +18,7 @@ public class Tremp {
         this.date = date;
         this.seats = seats;
     }
-
+    public ArrayList<String> getPassengersIds(){return this.passengersIds;}
     public String getSrc() {
         return src;
     }

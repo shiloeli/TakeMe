@@ -15,7 +15,7 @@ public class Driver extends User {
         this.rank = 0;
         this.trempsIds= new ArrayList<String>();
     }
-
+    public ArrayList<String> getTrempsIds(){return this.trempsIds;}
     public Car getMyCar() {
         return myCar;
     }
