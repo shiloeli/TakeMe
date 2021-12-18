@@ -11,6 +11,8 @@ public class Tremp {
 
     public Tremp(String src, String dest, String day, String hour, String date, String seats){
         this.passengersIds = new ArrayList<String>();
+        passengersIds.add("debug");
+        passengersIds.add("debug2222");
         this.src = src;
         this.dest = dest;
         this.day = day;
