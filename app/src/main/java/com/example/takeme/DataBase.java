@@ -2,19 +2,20 @@ package com.example.takeme;
 
 import android.util.Log;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class DataBase {
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
-
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
     }
@@ -58,5 +59,15 @@ public class DataBase {
             }
         });
     }
+    public static FirestoreRecyclerOptions<Tremp> Board(String collection, String name){
+        String ID = getID();
+        Query query = fStore.collection(collection).orderBy(name);
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
+
 }
 

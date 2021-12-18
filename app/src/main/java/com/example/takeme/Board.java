@@ -18,8 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class Board extends AppCompatActivity  {
-
-    private FirebaseFirestore fStore;
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
 
@@ -27,16 +25,9 @@ public class Board extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
-
-        fStore = FirebaseFirestore.getInstance();
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
-
-        Query query = fStore.collection("tremps").orderBy("seats");
-
-        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-                .setQuery(query, Tremp.class)
-                .build();
+        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "seats");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull
             @Override
@@ -63,9 +54,6 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
-    public FirebaseFirestore getfStore() {
-        return fStore;
-    }
 
     private class TrempViewHolder extends RecyclerView.ViewHolder {
         private TextView destCity;
