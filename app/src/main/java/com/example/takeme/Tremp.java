@@ -27,7 +27,6 @@ public class Tremp {
         return dest;
     }
 
-
     public String getHour() {
         return hour;
     }
