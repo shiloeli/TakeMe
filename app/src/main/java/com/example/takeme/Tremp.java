@@ -3,18 +3,17 @@ package com.example.takeme;
 import java.util.ArrayList;
 
 public class Tremp {
-    String src, dest, day, hour, date;
+    String src, dest, hour, date;
     int seats;
     ArrayList<String> passengersIds;
     public Tremp(){
 
     }
 
-    public Tremp(String src, String dest, String day, String hour, String date, int seats){
+    public Tremp(String src, String dest, String hour, String date, int seats){
         this.passengersIds = new ArrayList<String>();
         this.src = src;
         this.dest = dest;
-        this.day = day;
         this.hour = hour;
         this.date = date;
         this.seats = seats;
@@ -26,10 +25,6 @@ public class Tremp {
 
     public String getDest() {
         return dest;
-    }
-
-    public String getDay(){
-        return day;
     }
 
     public String getHour() {
