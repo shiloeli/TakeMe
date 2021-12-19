@@ -13,6 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataBase {
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -77,8 +80,15 @@ public class DataBase {
         });
 
     }
-    public static FirestoreRecyclerOptions<Tremp> Board(String collection, String name){
-        String ID = getID();
+    public static FirestoreRecyclerOptions<Tremp> Board(String collection){
+        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
+    public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
         Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
