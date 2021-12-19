@@ -31,36 +31,31 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
-        adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
-            @NonNull
-            @Override
-            public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp ,parent, false);
-                return new TrempViewHolder(view);
-            }
+            adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
+                @NonNull
+                @Override
+                public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp, parent, false);
+                    return new TrempViewHolder(view);
+                }
 
-            @Override
-            protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
-                holder.date.setText(model.getDate());
-                holder.destCity.setText(model.getDest());
-                holder.hour.setText(model.getHour());
-                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
-                holder.position=holder.getAdapterPosition();
-                Tremp tremp=options.getSnapshots().get(position);
-                holder.tremp=tremp;
-                holder.id=options.getSnapshots().getSnapshot(position).getId();
-            }
+                @Override
+                protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
+                    holder.date.setText(model.getDate());
+                    holder.destCity.setText(model.getDest());
+                    holder.hour.setText(model.getHour());
+                    holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                    holder.position = holder.getAdapterPosition();
+                    Tremp tremp = options.getSnapshots().get(position);
+                    holder.tremp = tremp;
+                    holder.id = options.getSnapshots().getSnapshot(position).getId();
+                }
 
-        };
-        fireStoreTremps.setHasFixedSize(true);
-        fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
-        fireStoreTremps.setAdapter(adapter);
-    }
-
-    public void onClickSearch(View view) {
-        
-    }
-
+            };
+            fireStoreTremps.setHasFixedSize(true);
+            fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
+            fireStoreTremps.setAdapter(adapter);
+        }
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
@@ -71,7 +66,6 @@ public class Board extends AppCompatActivity  {
             int position;
             Tremp tremp;
             String id;
-
 
             public TrempViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -92,7 +86,12 @@ public class Board extends AppCompatActivity  {
             }
         }
 
-        @Override
+
+
+
+
+
+    @Override
         protected void onStop () {
             super.onStop();
             adapter.stopListening();
