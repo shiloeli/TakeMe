@@ -45,7 +45,7 @@ public class DataBase {
         String userDbId = getID();
         documentReference = fStore.collection(collection).document();
 
-        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum);
+        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum,userDbId);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
@@ -85,7 +85,7 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
-        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
+        Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();

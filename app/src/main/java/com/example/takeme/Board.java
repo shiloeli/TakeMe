@@ -57,8 +57,12 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
+    public void onClickSearch(View view) {
+        
+    }
 
-        class TrempViewHolder extends RecyclerView.ViewHolder {
+
+    class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
             private TextView date;
             private TextView hour;
