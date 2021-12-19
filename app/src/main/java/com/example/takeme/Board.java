@@ -43,6 +43,7 @@ public class Board extends AppCompatActivity  {
             protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
+                holder.sourceCity.setText(model.getSrc());
                 holder.hour.setText(model.getHour());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
@@ -63,6 +64,7 @@ public class Board extends AppCompatActivity  {
 
     private class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
+            private TextView sourceCity;
             private TextView date;
             private TextView hour;
 
@@ -75,6 +77,7 @@ public class Board extends AppCompatActivity  {
             public TrempViewHolder(@NonNull View itemView) {
                 super(itemView);
                 destCity = itemView.findViewById(R.id.destCity);
+                sourceCity=itemView.findViewById(R.id.sourceCity);
                 date = itemView.findViewById(R.id.dateTremp);
                 hour = itemView.findViewById(R.id.hourTremp);
                 numberOfSeats = itemView.findViewById(R.id.numOfSeats);

@@ -15,7 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintVertical_bias="0.905"
+        />
+
 
     <TextView
         android:id="@+id/textView12"
@@ -68,16 +70,16 @@
         android:id="@+id/buttonSearch"
         android:layout_width="109dp"
         android:layout_height="50dp"
-        android:backgroundTint="#FF9800"
+        android:background="@drawable/rounded_button"
         android:onClick="onClickSearch"
         android:text="חפש"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.237" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
