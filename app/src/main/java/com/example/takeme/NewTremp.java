@@ -57,7 +57,6 @@ public class NewTremp extends AppCompatActivity {
             public void onClick(View view) {
                 String txtSrcCity = srcCity.getText().toString();
                 String txtDestCity = destCity.getText().toString();
-                String txtDay = day.getText().toString();
                 String txtTime = time.getText().toString();
                 String txtDate = date.getText().toString();
                 String txtSeatsNum = seatsNum.getText().toString();
@@ -73,24 +72,13 @@ public class NewTremp extends AppCompatActivity {
                     destCity.setError("שדה חובה");
                     return;
                 }
-                if(TextUtils.isEmpty(txtDay))
-                {
-                    day.setError("שדה חובה");
-                    return;
-                }
-//                if(TextUtils.isEmpty(txtTime))
-//                {
-//                    time.setError("שדה חובה");
-//                    return;
-//                }
-
                 if(TextUtils.isEmpty(txtSeatsNum))
                 {
                     seatsNum.setError("שדה חובה");
                     return;
                 }
 
-                DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtDay, txtTime, txtDate, Integer.parseInt(txtSeatsNum));
+                DataBase.createTremp("tremps",txtSrcCity, txtDestCity,  txtTime, txtDate, Integer.parseInt(txtSeatsNum));
                 startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
             }
         });

@@ -44,7 +44,6 @@ public class Board extends AppCompatActivity  {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
-                holder.day.setText(model.getDay());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
@@ -83,6 +82,7 @@ public class Board extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+                        DataBase.trempistJoinsTremp(id);
                     }
                 });
             }
