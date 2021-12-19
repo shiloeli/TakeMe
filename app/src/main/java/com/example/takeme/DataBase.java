@@ -37,7 +37,7 @@ public class DataBase {
         });
     }
 
-    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,String txtSeatsNum){
+    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document(userDbId);
         Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
@@ -61,7 +61,7 @@ public class DataBase {
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection, String name){
         String ID = getID();
-        Query query = fStore.collection(collection).orderBy(name);
+        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();

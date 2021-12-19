@@ -28,30 +28,9 @@ public class Board extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
-//<<<<<<< HEAD
-
-
-//        fStore = FirebaseFirestore.getInstance();
-//        fireStoreTremps = findViewById(R.id.recycleTremp);
-
-//
-//        Query query = fStore.collection("tremps").orderBy("seats");
-//
-//        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-//                    .setQuery(query, Tremp.class)
-//                    .build();
-//
-//            adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
-//                @NonNull
-//                @Override
-//                public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp, parent, false);
-//                    return new TrempViewHolder(view);
-//                }
-//=======
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
-        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "seats");
+        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "date");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull
             @Override
@@ -66,7 +45,7 @@ public class Board extends AppCompatActivity  {
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
                 holder.day.setText(model.getDay());
-                holder.numberOfSeats.setText(model.getSeats());
+                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
@@ -78,28 +57,6 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
         fireStoreTremps.setAdapter(adapter);
     }
-
-//>>>>>>> e86ede6ee983f12f4e8ea42bccc1bb83f877a637
-
-//                @Override
-//                protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
-//                    holder.date.setText(model.getDate());
-//                    holder.destCity.setText(model.getDest());
-//                    holder.hour.setText(model.getHour());
-//                    holder.day.setText(model.getDay());
-//                    holder.numberOfSeats.setText(model.getSeats());
-//                    holder.position = holder.getAdapterPosition();
-//                    Tremp tremp = options.getSnapshots().get(position);
-//                    holder.tremp = tremp;
-//                    holder.id=options.getSnapshots().getSnapshot(position).getId();
-//                }
-//
-//            };
-
-
-//        public FirebaseFirestore getfStore () {
-//            return fStore;
-//        }
 
 
         private class TrempViewHolder extends RecyclerView.ViewHolder {
