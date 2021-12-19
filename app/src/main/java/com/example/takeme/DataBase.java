@@ -1,14 +1,16 @@
 package com.example.takeme;
 
 import android.util.Log;
-
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.google.firebase.firestore.Query;
 
 public class DataBase {
@@ -37,16 +39,21 @@ public class DataBase {
         });
     }
 
-    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,String txtSeatsNum){
+
+    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document(userDbId);
+
         Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Log.d(TAG, "onSuccess: Tremp is create for" + userDbId);
+                String trempId = documentReference.getId();
+                fStore.collection("users").document(userDbId).update("trempsIds", FieldValue.arrayUnion(trempId));
             }
         });
+
     }
     public static void createDriver(String collection, String name,String lastName,String email,String phone,String id,int StringNumberCar,String StringTypeCar,String StringColor,boolean male){
         String ID = getID();
@@ -61,7 +68,7 @@ public class DataBase {
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection, String name){
         String ID = getID();
-        Query query = fStore.collection(collection).orderBy(name);
+        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
