@@ -67,6 +67,7 @@ public class Board extends AppCompatActivity  {
 
 
 
+
     class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
             private TextView sourceCity;
@@ -78,7 +79,6 @@ public class Board extends AppCompatActivity  {
             int position;
             Tremp tremp;
             String id;
-
 
             public TrempViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -98,7 +98,8 @@ public class Board extends AppCompatActivity  {
             }
         }
 
-        @Override
+
+    @Override
         protected void onStop () {
             super.onStop();
             adapter.stopListening();
