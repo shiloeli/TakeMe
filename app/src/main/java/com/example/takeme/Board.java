@@ -83,6 +83,7 @@ public class Board extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+
                     }
                 });
             }

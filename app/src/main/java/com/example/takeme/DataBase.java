@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -56,6 +57,15 @@ public class DataBase {
             @Override
             public void onSuccess(Void avoid) {
                 Log.d(TAG, "onSuccess: user profile is create for" + ID);
+            }
+        });
+    }
+    public static  void trempistJoinsTremp(String trempID)
+    {
+        fStore.collection("tremps").document(trempID).update("seats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: Tremp seats update for tremp id"+trempID);
             }
         });
     }
