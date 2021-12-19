@@ -31,7 +31,7 @@ public class TrempList extends AppCompatActivity {
             @NonNull
             @Override
             public TrempList.DriverViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp ,parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp_driver ,parent, false);
                 return new TrempList.DriverViewHolder(view);
             }
 
@@ -75,16 +75,7 @@ public class TrempList extends AppCompatActivity {
             destCity = itemView.findViewById(R.id.destCity);
             date = itemView.findViewById(R.id.dateTremp);
             hour = itemView.findViewById(R.id.hourTremp);
-            day = itemView.findViewById(R.id.driverDay);
             numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
-                    DataBase.trempistJoinsTremp(id);
-                }
-            });
         }
     }
 
