@@ -30,7 +30,7 @@ public class Board extends AppCompatActivity  {
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
-        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "date");
+        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull
             @Override
@@ -44,7 +44,6 @@ public class Board extends AppCompatActivity  {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
-                holder.day.setText(model.getDay());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
@@ -59,7 +58,7 @@ public class Board extends AppCompatActivity  {
     }
 
 
-        private class TrempViewHolder extends RecyclerView.ViewHolder {
+        class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
             private TextView date;
             private TextView hour;
@@ -84,7 +83,7 @@ public class Board extends AppCompatActivity  {
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
 
-                    }
+                        DataBase.trempistJoinsTremp(id); }
                 });
             }
         }

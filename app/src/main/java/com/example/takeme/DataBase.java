@@ -8,8 +8,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBase {
     public static final String TAG = "TAG";
@@ -37,10 +41,11 @@ public class DataBase {
         });
     }
 
-    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtDay,String txtHour,String txtDate,int txtSeatsNum){
+    public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
-        documentReference = fStore.collection(collection).document(userDbId);
-        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
+        documentReference = fStore.collection(collection).document();
+
+        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
@@ -60,8 +65,26 @@ public class DataBase {
             }
         });
     }
-    public static FirestoreRecyclerOptions<Tremp> Board(String collection, String name){
-        String ID = getID();
+    public static void trempistJoinsTremp (String trempId)
+    {
+        documentReference = fStore.collection("tremps").document(trempId);
+        documentReference.update("seats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: Tremps seats updated for tremp  " + trempId);
+            }
+        });
+
+    }
+    public static FirestoreRecyclerOptions<Tremp> Board(String collection){
+        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
+    public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
         Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
