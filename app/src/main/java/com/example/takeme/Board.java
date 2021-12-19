@@ -30,8 +30,10 @@ public class Board extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
+        fireStoreTremps.setHasFixedSize(true);
 
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
+
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull
             @Override
@@ -44,6 +46,7 @@ public class Board extends AppCompatActivity  {
             protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
+                holder.sourceCity.setText(model.getSrc());
                 holder.hour.setText(model.getHour());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
@@ -58,12 +61,19 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
+    public void onClickSearch(View view) {
 
-        class TrempViewHolder extends RecyclerView.ViewHolder {
+    }
+
+
+
+    class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
+            private TextView sourceCity;
             private TextView date;
             private TextView hour;
             private CheckBox enrollment;
+
             private TextView numberOfSeats;
             int position;
             Tremp tremp;
@@ -73,6 +83,7 @@ public class Board extends AppCompatActivity  {
             public TrempViewHolder(@NonNull View itemView) {
                 super(itemView);
                 destCity = itemView.findViewById(R.id.destCity);
+                sourceCity=itemView.findViewById(R.id.sourceCity);
                 date = itemView.findViewById(R.id.dateTremp);
                 hour = itemView.findViewById(R.id.hourTremp);
                 numberOfSeats = itemView.findViewById(R.id.numOfSeats);
@@ -81,8 +92,8 @@ public class Board extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
-                        DataBase.trempistJoinsTremp(id);
-                    }
+
+                        DataBase.trempistJoinsTremp(id); }
                 });
             }
         }
