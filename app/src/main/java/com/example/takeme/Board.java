@@ -29,7 +29,7 @@ public class Board extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
-
+        fireStoreTremps.setHasFixedSize(true);
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "date");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull

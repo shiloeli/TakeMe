@@ -44,7 +44,7 @@ public class DataBase {
         String userDbId = getID();
         documentReference = fStore.collection(collection).document(userDbId);
 
-        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
+        Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
