@@ -26,7 +26,7 @@ import java.util.Locale;
 
 public class NewTremp extends AppCompatActivity {
 
-    EditText srcCity,destCity, day, seatsNum;
+    EditText srcCity,destCity, seatsNum;
     Button trempButton,date,time;
     String userID;
     private DatePickerDialog datePickerDialog;
@@ -45,7 +45,6 @@ public class NewTremp extends AppCompatActivity {
 
         srcCity = (EditText) findViewById(R.id.a_srcCity);
         destCity = (EditText) findViewById(R.id.a_destCity);
-//        day = (EditText) findViewById(R.id.a_day);
         time = (Button) findViewById(R.id.timeButton);
         date = (Button) findViewById(R.id.datePickerButton);
         seatsNum = (EditText) findViewById(R.id.a_numberOfSeats);
@@ -72,13 +71,15 @@ public class NewTremp extends AppCompatActivity {
                     destCity.setError("שדה חובה");
                     return;
                 }
+
                 if(TextUtils.isEmpty(txtSeatsNum))
                 {
                     seatsNum.setError("שדה חובה");
                     return;
                 }
 
-                DataBase.createTremp("tremps",txtSrcCity, txtDestCity,  txtTime, txtDate, Integer.parseInt(txtSeatsNum));
+                DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtTime, txtDate, Integer.parseInt(txtSeatsNum));
+
                 startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
             }
         });
@@ -137,6 +138,6 @@ public class NewTremp extends AppCompatActivity {
         int style=AlertDialog.THEME_HOLO_DARK;
         TimePickerDialog timePickerDialog=new TimePickerDialog(this,style,onTimeSetListener,hour,minute,true);
         timePickerDialog.show();
-
     }
+
 }

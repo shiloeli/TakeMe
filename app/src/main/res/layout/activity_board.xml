@@ -9,13 +9,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleTremp"
-        android:layout_width="440dp"
-        android:layout_height="329dp"
+        android:layout_width="409dp"
+        android:layout_height="455dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.989" />
+        app:layout_constraintVertical_bias="0.905"
+        />
+
+
 
     <TextView
         android:id="@+id/textView12"
