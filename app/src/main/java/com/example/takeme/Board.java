@@ -12,31 +12,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class Board extends AppCompatActivity  {
-
-    private FirebaseFirestore fStore;
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
-
-        fStore = FirebaseFirestore.getInstance();
         fireStoreTremps = findViewById(R.id.recycleTremp);
 
-
-        Query query = fStore.collection("tremps").orderBy("seats");
-
-        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-                .setQuery(query, Tremp.class)
-                .build();
+        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps", "date");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
             @NonNull
             @Override
@@ -51,8 +45,11 @@ public class Board extends AppCompatActivity  {
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
                 holder.day.setText(model.getDay());
-                holder.numberOfSeats.setText(model.getSeats());
+                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
+                Tremp tremp=options.getSnapshots().get(position);
+                holder.tremp=tremp;
+                holder.id=options.getSnapshots().getSnapshot(position).getId();
             }
 
         };
@@ -61,47 +58,46 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
-    public FirebaseFirestore getfStore() {
-        return fStore;
-    }
 
-    private class TrempViewHolder extends RecyclerView.ViewHolder {
-        private TextView destCity;
-        private TextView date;
-        private TextView hour;
-        private TextView day;
-        private TextView numberOfSeats;
-        int position;
-
-
-        public TrempViewHolder (@NonNull View itemView) {
-            super(itemView);
-            destCity = itemView.findViewById(R.id.destCity);
-            date = itemView.findViewById(R.id.dateTremp);
-            hour = itemView.findViewById(R.id.hourTremp);
-            day = itemView.findViewById(R.id.driverDay);
-            numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-            itemView.setOnClickListener(new View.OnClickListener(){
+        private class TrempViewHolder extends RecyclerView.ViewHolder {
+            private TextView destCity;
+            private TextView date;
+            private TextView hour;
+            private TextView day;
+            private TextView numberOfSeats;
+            int position;
+            Tremp tremp;
+            String id;
 
 
-                @Override
-                public void onClick(View v) {
-                    Log.d("demo","onClick: item clicked "+position);
+            public TrempViewHolder(@NonNull View itemView) {
+                super(itemView);
+                destCity = itemView.findViewById(R.id.destCity);
+                date = itemView.findViewById(R.id.dateTremp);
+                hour = itemView.findViewById(R.id.hourTremp);
+                day = itemView.findViewById(R.id.driverDay);
+                numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+                itemView.setOnClickListener(new View.OnClickListener() {
 
-                }
-            });
+
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+                    }
+                });
+            }
         }
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
+        @Override
+        protected void onStop () {
+            super.onStop();
+            adapter.stopListening();
+        }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+        @Override
+        protected void onStart () {
+            super.onStart();
+            adapter.startListening();
+        }
+
 }

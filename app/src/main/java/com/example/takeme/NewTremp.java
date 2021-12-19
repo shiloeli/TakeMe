@@ -78,7 +78,7 @@ public class NewTremp extends AppCompatActivity {
                     return;
                 }
 
-                DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, txtSeatsNum);
+                DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtDay, txtHour, txtDate, Integer.parseInt(txtSeatsNum));
                 startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
             }
         });
