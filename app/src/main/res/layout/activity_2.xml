@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserRegister"
-    android:background="@drawable/back1">
+    android:background="@drawable/background12">
 
     <Button
         android:id="@+id/button_connect"

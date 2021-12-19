@@ -42,7 +42,7 @@ public class DataBase {
 
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
-        documentReference = fStore.collection(collection).document(userDbId);
+        documentReference = fStore.collection(collection).document();
 
         Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum);
         documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {

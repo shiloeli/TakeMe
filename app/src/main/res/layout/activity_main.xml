@@ -5,42 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <ImageView
-        android:adjustViewBounds="true"
-
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/background12" />
 
 
-<!--    <View-->
+    <!--    <View-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"/>-->
 <!--        android:background="
 "-->
-    <FrameLayout
-        android:layout_width="377dp"
-        android:layout_height="47dp"
-        android:background="#"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="240dp">
 
-    </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="377dp"
-        android:layout_height="47dp"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="296dp">
+    <ImageView
+        android:layout_width="match_parent"
 
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/background12"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <TextView
         android:id="@+id/textView2"
 
         android:layout_width="57dp"
         android:layout_height="18dp"
         android:text="סיסמא"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.927"
@@ -70,39 +61,41 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.434" />
 
     <Button
         android:id="@+id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="התחבר"
+        android:layout_width="124dp"
+        android:layout_height="64dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#151414"
+        android:text="התחבר"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.622" />
 
     <Button
         android:id="@+id/btnReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#070606"
+        android:layout_width="128dp"
+        android:layout_height="62dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#151414"
         android:onClick="onClickReg"
         android:text="הרשם"
-        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.62" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -113,6 +106,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074"
+        android:src="@drawable/logo2"
         />
 
     <EditText
@@ -123,12 +117,11 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348"
+        app:layout_constraintVertical_bias="0.344"
         tools:ignore="MissingConstraints" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
