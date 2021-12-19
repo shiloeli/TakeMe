@@ -4,30 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/baackground">
+    tools:context=".MainActivity">
+    <ImageView
+        android:adjustViewBounds="true"
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background12" />
+
 
 <!--    <View-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"/>-->
-<!--        android:background=""-->
+<!--        android:background="
+"-->
+    <FrameLayout
+        android:layout_width="377dp"
+        android:layout_height="47dp"
+        android:background="#"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="240dp">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="377dp"
+        android:layout_height="47dp"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="296dp">
+
+    </FrameLayout>
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="57dp"
-        android:layout_height="18dp"
-        android:text="סיסמא"
+        android:layout_width="78dp"
+        android:layout_height="30dp"
+        android:text="סיסמה"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintHorizontal_bias="0.927"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433" />
+        app:layout_constraintVertical_bias="0.429" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="שם משתמש"
+        android:textSize="17dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.923"
@@ -84,7 +112,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo2" />
 
     <EditText
         android:id="@+id/textEmail"
@@ -99,6 +127,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.348"
         tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
