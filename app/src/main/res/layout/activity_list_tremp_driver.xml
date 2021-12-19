@@ -26,12 +26,12 @@
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintVertical_bias="0.700" />
 
     <TextView
         android:id="@+id/destCity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textAlignment="viewEnd"
         android:textSize="16sp"
@@ -40,12 +40,12 @@
         app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.230" />
 
     <TextView
         android:id="@+id/dateTremp"
         android:layout_width="106dp"
-        android:layout_height="28dp"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textAlignment="viewEnd"
         android:textSize="16sp"
@@ -54,12 +54,12 @@
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintVertical_bias="0.230" />
 
     <TextView
         android:id="@+id/hourTremp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,12 +67,12 @@
         app:layout_constraintHorizontal_bias="0.674"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.716" />
+        app:layout_constraintVertical_bias="0.700" />
 
     <TextView
         android:id="@+id/srcDriver"
         android:layout_width="30dp"
-        android:layout_height="22dp"
+        android:layout_height="25dp"
         android:text="יעד:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -81,12 +81,12 @@
         app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.235" />
+        app:layout_constraintVertical_bias="0.230" />
 
     <TextView
         android:id="@+id/driverDate"
         android:layout_width="50dp"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:text="תאריך:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -95,12 +95,12 @@
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.230" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="116dp"
-        android:layout_height="19dp"
+        android:layout_height="25dp"
         android:text="מספר מקומות:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -109,12 +109,12 @@
         app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
+        app:layout_constraintVertical_bias="0.700" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="40dp"
-        android:layout_height="21dp"
+        android:layout_height="25dp"
         android:text="שעה:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -123,6 +123,6 @@
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintVertical_bias="0.700" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

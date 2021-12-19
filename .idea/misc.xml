@@ -3,19 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
         <entry key="..\:/TakeMe/app/src/main/res/drawable/baackground.xml" value="0.11015625" />
         <entry key="..\:/TakeMe/app/src/main/res/drawable/rounded_button.xml" value="0.169140625" />
         <entry key="..\:/TakeMe/app/src/main/res/drawable/rounded_button2.xml" value="0.169140625" />
-=======
->>>>>>> b8d2cefadac635a32417916120fce0d188a5f6d1
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_2.xml" value="0.34564102564102567" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_board.xml" value="0.2" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_diver_information.xml" value="0.15833333333333333" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_driver.xml" value="0.148828125" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_driver_or_trempist.xml" value="0.113671875" />
-        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.536" />
-        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_main.xml" value="0.34564102564102567" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.264" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp_driver.xml" value="0.17890625" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_main.xml" value="0.17890625" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.1" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_my_tremps.xml" value="0.113671875" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_tremp_list.xml" value="0.148828125" />
@@ -32,23 +30,6 @@
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_my_tremps.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_tremp.xml" value="0.2828125" />
-<<<<<<< HEAD
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/drawable/baackground.xml" value="0.2123076923076923" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/drawable/rounded_button2.xml" value="0.29322916666666665" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_board.xml" value="0.25" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.1" />
-=======
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_board.xml" value="0.25" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.33" />
->>>>>>> cd085e816745712530ea5dcc511b2b8958c0d9fe
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_main.xml" value="0.346875" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.5" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_tremp_list.xml" value="0.2609375" />
-        <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_trempist_dashboard.xml" value="0.20260416666666667" />
-<<<<<<< HEAD
-=======
-        <entry key="app/src/main/res/layout/activity_board.xml" value="0.35260416666666666" />
->>>>>>> cd085e816745712530ea5dcc511b2b8958c0d9fe
       </map>
     </option>
   </component>

@@ -18,22 +18,21 @@
 
     <TextView
         android:id="@+id/numOfSeats"
-        android:layout_width="49dp"
-        android:layout_height="19dp"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
-
+        app:layout_constraintVertical_bias="0.180" />
 
     <TextView
         android:id="@+id/destCity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textAlignment="viewEnd"
         android:textSize="16sp"
@@ -42,42 +41,41 @@
         app:layout_constraintHorizontal_bias="0.604"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.180" />
+
 
     <TextView
         android:id="@+id/dateTremp"
-        android:layout_width="69dp"
-        android:layout_height="32dp"
+        android:layout_width="105dp"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textAlignment="viewEnd"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.659" />
-
+        app:layout_constraintVertical_bias="0.650" />
 
     <TextView
         android:id="@+id/hourTremp"
-        android:layout_width="67dp"
-        android:layout_height="26dp"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
         android:text="TextView"
         android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="0.650" />
 
     <TextView
         android:id="@+id/srcDriver"
         android:layout_width="30dp"
-        android:layout_height="22dp"
-        android:text="----"
+        android:layout_height="25dp"
+        android:text="(----"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,12 +83,13 @@
         app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.180
+" />
 
     <TextView
         android:id="@+id/driverDate"
         android:layout_width="50dp"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:text="תאריך:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -99,13 +98,13 @@
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708" />
+        app:layout_constraintVertical_bias="0.650" />
 
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="116dp"
-        android:layout_height="19dp"
+        android:layout_width="110dp"
+        android:layout_height="25dp"
         android:text="מספר מקומות:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -114,12 +113,12 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
+        app:layout_constraintVertical_bias="0.180" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="40dp"
-        android:layout_height="21dp"
+        android:layout_height="25dp"
         android:text="שעה:"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -128,19 +127,19 @@
         app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintVertical_bias="0.650" />
 
     <TextView
         android:id="@+id/sourceCity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
+        app:layout_constraintVertical_bias="0.180" />
 
     <CheckBox
         android:id="@+id/checkBoxDriver"
@@ -149,8 +148,9 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.650" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
