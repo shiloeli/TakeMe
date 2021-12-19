@@ -52,54 +52,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.345"
-        tools:ignore="Autofill,HardcodedText" />
-
-    <EditText
-        android:id="@+id/a_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="יום"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.451"
-        tools:ignore="Autofill,HardcodedText" />
-
-    <EditText
-        android:id="@+id/a_hour"
-        android:layout_width="211dp"
-        android:layout_height="36dp"
-        android:ems="10"
-        android:hint="שעה"
-        android:inputType="time"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565"
-        tools:ignore="Autofill,HardcodedText" />
-
-    <EditText
-        android:id="@+id/a_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="תאריך"
-        android:inputType="date"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661"
+        app:layout_constraintVertical_bias="0.33"
         tools:ignore="Autofill,HardcodedText" />
 
     <EditText
@@ -112,10 +65,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.766"
+        app:layout_constraintVertical_bias="0.618"
         tools:ignore="Autofill,HardcodedText" />
 
     <Button
@@ -126,12 +79,45 @@
         android:text="צור טרמפ"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901"
+        app:layout_constraintVertical_bias="0.735"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="209dp"
+        android:layout_height="46dp"
+        android:onClick="openDatePicker"
+        android:text="בחר תאריך"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
+
+    <Button
+        android:id="@+id/timeButton"
+        style="?android:spinnerStyle"
+        android:layout_width="208dp"
+        android:layout_height="43dp"
+        android:onClick="popTimePicker"
+        android:text="שעה"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.425" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void onClickReg(View view) {
-        Intent intenet=new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
+        Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
         startActivity(intenet);
     }
 
