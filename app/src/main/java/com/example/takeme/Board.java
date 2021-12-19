@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,10 +24,13 @@ public class Board extends AppCompatActivity  {
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
 
         fStore = FirebaseFirestore.getInstance();
         fireStoreTremps = findViewById(R.id.recycleTremp);
@@ -35,76 +39,80 @@ public class Board extends AppCompatActivity  {
         Query query = fStore.collection("tremps").orderBy("seats");
 
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-                .setQuery(query, Tremp.class)
-                .build();
-        adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
-            @NonNull
-            @Override
-            public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp ,parent, false);
-                return new TrempViewHolder(view);
-            }
+                    .setQuery(query, Tremp.class)
+                    .build();
 
-            @Override
-            protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
-                holder.date.setText(model.getDate());
-                holder.destCity.setText(model.getDest());
-                holder.hour.setText(model.getHour());
-                holder.day.setText(model.getDay());
-                holder.numberOfSeats.setText(model.getSeats());
-                holder.position=holder.getAdapterPosition();
-                Tremp tremp=options.getSnapshots().get(position);
-                holder.tremp=tremp;
-            }
-
-        };
-        fireStoreTremps.setHasFixedSize(true);
-        fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
-        fireStoreTremps.setAdapter(adapter);
-    }
-
-    public FirebaseFirestore getfStore() {
-        return fStore;
-    }
-
-    private class TrempViewHolder extends RecyclerView.ViewHolder {
-        private TextView destCity;
-        private TextView date;
-        private TextView hour;
-        private TextView day;
-        private TextView numberOfSeats;
-        int position;
-        Tremp tremp;
-
-
-        public TrempViewHolder (@NonNull View itemView) {
-            super(itemView);
-            destCity = itemView.findViewById(R.id.destCity);
-            date = itemView.findViewById(R.id.dateTremp);
-            hour = itemView.findViewById(R.id.hourTremp);
-            day = itemView.findViewById(R.id.driverDay);
-            numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-            itemView.setOnClickListener(new View.OnClickListener(){
-
+            adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
+                @NonNull
+                @Override
+                public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp, parent, false);
+                    return new TrempViewHolder(view);
+                }
 
                 @Override
-                public void onClick(View v) {
-                    Log.d("demo","onClick: item clicked "+position+"tremp"+tremp.dest);
-
+                protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
+                    holder.date.setText(model.getDate());
+                    holder.destCity.setText(model.getDest());
+                    holder.hour.setText(model.getHour());
+                    holder.day.setText(model.getDay());
+                    holder.numberOfSeats.setText(model.getSeats());
+                    holder.position = holder.getAdapterPosition();
+                    Tremp tremp = options.getSnapshots().get(position);
+                    holder.tremp = tremp;
+                    holder.id=options.getSnapshots().getSnapshot(position).getId();
                 }
-            });
+
+            };
+            fireStoreTremps.setHasFixedSize(true);
+            fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
+            fireStoreTremps.setAdapter(adapter);
         }
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
+        public FirebaseFirestore getfStore () {
+            return fStore;
+        }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+
+        private class TrempViewHolder extends RecyclerView.ViewHolder {
+            private TextView destCity;
+            private TextView date;
+            private TextView hour;
+            private TextView day;
+            private TextView numberOfSeats;
+            int position;
+            Tremp tremp;
+            String id;
+
+
+            public TrempViewHolder(@NonNull View itemView) {
+                super(itemView);
+                destCity = itemView.findViewById(R.id.destCity);
+                date = itemView.findViewById(R.id.dateTremp);
+                hour = itemView.findViewById(R.id.hourTremp);
+                day = itemView.findViewById(R.id.driverDay);
+                numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+                itemView.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+                    }
+                });
+            }
+        }
+
+        @Override
+        protected void onStop () {
+            super.onStop();
+            adapter.stopListening();
+        }
+
+        @Override
+        protected void onStart () {
+            super.onStart();
+            adapter.startListening();
+        }
+
 }
