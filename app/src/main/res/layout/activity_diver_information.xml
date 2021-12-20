@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DriverInformation"
-    android:background="@drawable/baackground">
+    android:background="@drawable/background5">
 
     <EditText
         android:id="@+id/ColorCarText"
@@ -60,6 +60,7 @@
         android:layout_width="160dp"
         android:layout_height="35dp"
         android:text="פרטי הרכב"
+        android:textColor="#151414"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="24sp"

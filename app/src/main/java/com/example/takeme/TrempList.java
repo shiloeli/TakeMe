@@ -24,6 +24,7 @@ public class TrempList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tremp_list);
+
         fStoreTDriver = findViewById(R.id.recycleDriver);
         FirestoreRecyclerOptions<Tremp> options = DataBase.trempList("tremps");
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempList.DriverViewHolder>(options) {
