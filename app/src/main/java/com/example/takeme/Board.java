@@ -4,25 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.google.firebase.firestore.Query;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class Board extends AppCompatActivity  {
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
-
+    private EditText srcSearch,destSearch;
+    private Button search;
 
 
     @Override
@@ -31,7 +30,16 @@ public class Board extends AppCompatActivity  {
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
         fireStoreTremps.setHasFixedSize(true);
+        srcSearch=(EditText)findViewById(R.id.srcText);
+        destSearch=(EditText)findViewById(R.id.destText);
+        search=(Button)findViewById(R.id.buttonSearch);
 
+//        search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                firebaseUserSearch();
+//            }
+//        });
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
 
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
@@ -61,11 +69,21 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
-    public void onClickSearch(View view) {
-
-    }
-
-
+//    private void firebaseUserSearch() {
+//        FirestoreRecyclerAdapter<User,TrempViewHolder> firestoreRecyclerAdapter=new FirestoreRecyclerAdapter<User, TrempViewHolder>() {
+//            @Override
+//            protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull User model) {
+//
+//            }
+//
+//            @NonNull
+//            @Override
+//            public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                return null;
+//            }
+//        };
+//
+//    }
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
@@ -73,7 +91,7 @@ public class Board extends AppCompatActivity  {
             private TextView sourceCity;
             private TextView date;
             private TextView hour;
-            private CheckBox enrollment;
+            private Button enrollment, message;
 
             private TextView numberOfSeats;
             int position;
@@ -87,13 +105,22 @@ public class Board extends AppCompatActivity  {
                 date = itemView.findViewById(R.id.dateTremp);
                 hour = itemView.findViewById(R.id.hourTremp);
                 numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-                enrollment = itemView.findViewById(R.id.checkBoxDriver);
+                message = itemView.findViewById(R.id.messageForDriver);
+                message.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent=new Intent(Board.this, MessageToDriver.class);
+                        startActivity(intent);
+                    }
+                });
+                enrollment = itemView.findViewById(R.id.registration);
                 enrollment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
-
-                        DataBase.trempistJoinsTremp(id); }
+                        DataBase.trempistJoinsTremp(id);
+                    }
                 });
             }
         }

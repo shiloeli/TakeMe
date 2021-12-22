@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,14 +47,14 @@ public class DataBase {
         });
     }
 
-    public static boolean isDriver()
-    {
-        boolean ans;
-        fStore.collection("users").document(getID()).
-
-        boolean ans= fStore.collection("users").document(getID()).get().getResult().contains("myCar");
-        return ans;
-    }
+//    public static boolean isDriver()
+//    {
+//        boolean ans;
+//        fStore.collection("users").document(getID()).
+//
+//        boolean ans= fStore.collection("users").document(getID()).get().getResult().contains("myCar");
+//        return ans;
+//    }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document();
@@ -119,6 +120,7 @@ public class DataBase {
                 .build();
         return options;
     }
+
 
 
 }
