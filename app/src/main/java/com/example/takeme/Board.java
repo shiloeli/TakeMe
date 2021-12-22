@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,6 +23,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 public class Board extends AppCompatActivity  {
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
+    private EditText srcSearch,destSearch;
+    private Button search;
+
+
 
 
 
@@ -31,7 +36,16 @@ public class Board extends AppCompatActivity  {
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
         fireStoreTremps.setHasFixedSize(true);
+        srcSearch=(EditText)findViewById(R.id.srcText);
+        destSearch=(EditText)findViewById(R.id.destText);
+        search=(Button)findViewById(R.id.buttonSearch);
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseUserSearch();
+            }
+        });
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
 
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
@@ -61,11 +75,21 @@ public class Board extends AppCompatActivity  {
         fireStoreTremps.setAdapter(adapter);
     }
 
-    public void onClickSearch(View view) {
+    private void firebaseUserSearch() {
+        FirestoreRecyclerAdapter<User,TrempViewHolder> firestoreRecyclerAdapter=new FirestoreRecyclerAdapter<User, TrempViewHolder>() {
+            @Override
+            protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull User model) {
+
+            }
+
+            @NonNull
+            @Override
+            public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+        }
 
     }
-
-
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
