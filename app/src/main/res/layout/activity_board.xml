@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Board"
-    android:background="@drawable/baackground">
+    android:background="@drawable/background5"
+    tools:context=".Board">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleTremp"
-        android:layout_width="409dp"
-        android:layout_height="455dp"
+        android:layout_width="419dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905"
-        />
+        app:layout_constraintVertical_bias="0.905" />
 
 
     <TextView
@@ -25,6 +24,7 @@
         android:layout_height="36dp"
         android:text="חיפוש טרמפ"
         android:textAlignment="center"
+        android:textColor="#151414"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recycleTremp"
@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.232" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
@@ -45,10 +45,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/recycleTremp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.652" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
@@ -61,10 +61,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/recycleTremp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42" />
 
     <Button
         android:id="@+id/buttonSearch"
@@ -73,13 +73,13 @@
         android:background="@drawable/rounded_button"
         android:onClick="onClickSearch"
         android:text="חפש"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237" />
+        app:layout_constraintVertical_bias="0.286" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

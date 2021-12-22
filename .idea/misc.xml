@@ -3,17 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TakeMe/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/TakeMe/app/src/main/res/drawable/baackground.xml" value="0.11015625" />
+        <entry key="..\:/TakeMe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/TakeMe/app/src/main/res/drawable/rounded_big_button.xml" value="0.163671875" />
+        <entry key="..\:/TakeMe/app/src/main/res/drawable/rounded_button.xml" value="0.169140625" />
+        <entry key="..\:/TakeMe/app/src/main/res/drawable/rounded_button2.xml" value="0.169140625" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_2.xml" value="0.34564102564102567" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_board.xml" value="0.2" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_diver_information.xml" value="0.15833333333333333" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_driver.xml" value="0.148828125" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_driver_or_trempist.xml" value="0.113671875" />
-        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.536" />
-        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_main.xml" value="0.34564102564102567" />
-        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.1" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp.xml" value="0.264" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_list_tremp_driver.xml" value="0.17890625" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_main.xml" value="0.17890625" />
+        <entry key="..\:/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.152" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_my_tremps.xml" value="0.113671875" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_tremp_list.xml" value="0.148828125" />
         <entry key="..\:/TakeMe/app/src/main/res/layout/activity_trempist_dashboard.xml" value="0.148828125" />
+        <entry key="..\:/TakeMe/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.191015625" />
+        <entry key="..\:/TakeMe/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.191015625" />
         <entry key="..\:/TakeMe2/app/src/main/res/layout/activity_2.xml" value="0.152" />
         <entry key="..\:/TakeMe2/app/src/main/res/layout/activity_board.xml" value="0.1" />
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/drawable/baackground.xml" value="0.3828125" />
@@ -26,6 +35,7 @@
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_my_tremps.xml" value="0.2911458333333333" />
         <entry key="..\:/Users/Win10/AndroidStudioProjects/TakeMe/app/src/main/res/layout/activity_tremp.xml" value="0.2828125" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/drawable/baackground.xml" value="0.2123076923076923" />
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/drawable/rounded_button2.xml" value="0.29322916666666665" />
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_board.xml" value="0.1" />
@@ -34,6 +44,8 @@
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_my_tremp.xml" value="0.5" />
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_tremp_list.xml" value="0.2609375" />
         <entry key="..\:/Users/Win10/Desktop/takeme/TakeMe/app/src/main/res/layout/activity_trempist_dashboard.xml" value="0.20260416666666667" />
+=======
+>>>>>>> e45f110b9cc868efe94ae86953c0499c77944594
       </map>
     </option>
   </component>

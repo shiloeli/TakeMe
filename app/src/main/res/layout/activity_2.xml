@@ -133,41 +133,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.304" />
 
-    <Switch
-        android:id="@+id/reg_passenger"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:text="נוסע"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
-
     <RadioGroup
         android:layout_width="100dp"
         android:layout_height="99dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintHorizontal_bias="0.331"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757"
+        app:layout_constraintVertical_bias="0.71"
         tools:ignore="MissingConstraints">
 
         <RadioButton
             android:id="@+id/reg_male"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="זכר" />
+            android:text="זכר"
+            android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/reg_female"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="נקבה" />
+            android:text="נקבה"
+            android:textColor="@color/white" />
     </RadioGroup>
 
     <Switch
@@ -176,12 +165,13 @@
         android:layout_height="45dp"
         android:minHeight="48dp"
         android:text="נהג"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685"
+        app:layout_constraintVertical_bias="0.686"
         tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
 

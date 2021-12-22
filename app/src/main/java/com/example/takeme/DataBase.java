@@ -74,10 +74,25 @@ public class DataBase {
                 Log.d(TAG, "onSuccess: Tremps seats updated for tremp  " + trempId);
             }
         });
+        documentReference.update("passengersIds",FieldValue.arrayUnion(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: Trempsist " + getID() + "joined tremp " +trempId + "Successfully ");
+            }
+        });
 
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
         Query query = fStore.collection(collection).whereGreaterThan("seats",0);
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
+    public static FirestoreRecyclerOptions<Tremp> BoardSerchByCities()
+    {
+        Query query = fStore.collection("tremps").whereGreaterThan("seats",0).whereEqualTo("dest","Ariel").whereEqualTo("src","Bet Shean");
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();

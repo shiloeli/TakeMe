@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.google.firebase.firestore.Query;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class Board extends AppCompatActivity  {
@@ -66,17 +66,18 @@ public class Board extends AppCompatActivity  {
 
 
 
+
     class TrempViewHolder extends RecyclerView.ViewHolder {
             private TextView destCity;
             private TextView sourceCity;
             private TextView date;
             private TextView hour;
+            private Button enrollment, message;
 
             private TextView numberOfSeats;
             int position;
             Tremp tremp;
             String id;
-
 
             public TrempViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -85,9 +86,16 @@ public class Board extends AppCompatActivity  {
                 date = itemView.findViewById(R.id.dateTremp);
                 hour = itemView.findViewById(R.id.hourTremp);
                 numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-                itemView.setOnClickListener(new View.OnClickListener() {
-
-
+                message = itemView.findViewById(R.id.messageForDriver);
+                message.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(Board.this, MessageToDriver.class);
+                        startActivity(intent);
+                    }
+                });
+                enrollment = itemView.findViewById(R.id.registration);
+                enrollment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
@@ -97,7 +105,8 @@ public class Board extends AppCompatActivity  {
             }
         }
 
-        @Override
+
+    @Override
         protected void onStop () {
             super.onStop();
             adapter.stopListening();
