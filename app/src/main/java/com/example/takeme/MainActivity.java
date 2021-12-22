@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
@@ -54,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
+//                            DatabaseReference rootRef = DataBase.getInstance();
+//                            DatabaseReference usersRef = rootRef.child("Users");
+//                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
                             startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+//                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 

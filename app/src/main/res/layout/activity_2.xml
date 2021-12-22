@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserRegister"
-    android:background="@drawable/background12">
+    android:background="@drawable/background22">
 
     <Button
         android:id="@+id/button_connect"
@@ -172,7 +172,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.686"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

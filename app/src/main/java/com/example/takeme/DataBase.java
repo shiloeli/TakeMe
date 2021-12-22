@@ -7,6 +7,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +34,7 @@ public class DataBase {
     public static void createUser(String collection, String txtName,String txtLastName,String txtEmail,String txtPhone,String txtID, boolean male){
         String ID = getID();
         documentReference = fStore.collection(collection).document(ID);
-        User user = new User(txtName, txtLastName, txtEmail, txtPhone, txtID, male);
+        User user = new User(txtName, txtLastName, txtEmail, txtPhone, txtID, male,false);
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
@@ -54,10 +56,10 @@ public class DataBase {
             }
         });
     }
-    public static void createDriver(String collection, String name,String lastName,String email,String phone,String id,int StringNumberCar,String StringTypeCar,String StringColor,boolean male){
+    public static void createDriver(String collection, String name,String lastName,String email,String phone,String id,int StringNumberCar,String StringTypeCar,String StringColor,boolean male,boolean isDriver){
         String ID = getID();
         documentReference = fStore.collection(collection).document(ID);
-        Driver userDriver = new Driver(name, lastName, email, phone, id, male ,StringNumberCar,StringTypeCar,StringColor);
+        Driver userDriver = new Driver(name, lastName, email, phone, id, male ,StringNumberCar,StringTypeCar,StringColor,true);
         documentReference.set(userDriver).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
@@ -90,9 +92,9 @@ public class DataBase {
         return options;
 
     }
-    public static FirestoreRecyclerOptions<Tremp> BoardSerchByCities()
+    public static FirestoreRecyclerOptions<Tremp> BoardSerchByCities(String dest,String src)
     {
-        Query query = fStore.collection("tremps").whereGreaterThan("seats",0).whereEqualTo("dest","Ariel").whereEqualTo("src","Bet Shean");
+        Query query = fStore.collection("tremps").whereGreaterThan("seats",0).whereEqualTo("dest",dest).whereEqualTo("src",src);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
@@ -100,13 +102,13 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
-        Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
+        Query query = fStore.collection(collection).whereNotEqualTo("driverId",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
         return options;
-
     }
+
 
 }
 
