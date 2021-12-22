@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +35,7 @@ public class Board extends AppCompatActivity {
 
         src = (EditText) findViewById(R.id.srcText);
         dest = (EditText) findViewById(R.id.destText);
-        String StringtxtSrc = src.getText().toString();
-        String StringtxtDest = dest.getText().toString();
+
         search = (Button) findViewById(R.id.buttonSearch);
 
 //        search.setOnClickListener(new View.OnClickListener() {
@@ -48,8 +48,19 @@ public class Board extends AppCompatActivity {
 
         search.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
+                String StringtxtSrc = src.getText().toString();
+                String StringtxtDest = dest.getText().toString();
+                if(TextUtils.isEmpty(StringtxtSrc)){
+                    src.setError("נדרש מקור");
+                    return;
+                }
+                if(TextUtils.isEmpty(StringtxtDest)){
+                    dest.setError("נדרשת יעד");
+                    return;
+                }
                 FirestoreRecyclerOptions<Tremp> options = DataBase.BoardSerchByCities(StringtxtSrc, StringtxtDest);
                 adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
                     @NonNull
