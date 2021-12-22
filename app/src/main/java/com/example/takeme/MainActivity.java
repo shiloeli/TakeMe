@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 //                            DatabaseReference usersRef = rootRef.child("Users");
 //                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
                             startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+
 //                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();

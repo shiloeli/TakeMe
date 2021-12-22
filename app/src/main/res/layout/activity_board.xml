@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.232" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/destText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.652" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/srcText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -71,7 +71,6 @@
         android:layout_width="109dp"
         android:layout_height="50dp"
         android:background="@drawable/rounded_button"
-        android:onClick="onClickSearch"
         android:text="חפש"
         android:textColor="@color/white"
         android:textStyle="bold"
