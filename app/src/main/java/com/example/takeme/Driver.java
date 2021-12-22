@@ -8,9 +8,9 @@ public class Driver extends User {
    ArrayList<String> trempsIds;
 
    public Driver(){}
-    public Driver(String name, String lastName, String email, String phone, String id, Boolean gender, int carNumber, String carType, String carColor)
+    public Driver(String name, String lastName, String email, String phone, String id, Boolean gender, int carNumber, String carType, String carColor,boolean isDriver)
     {
-        super(name, lastName, email, phone, id, gender);
+        super(name, lastName, email, phone, id, gender,isDriver);
         this.myCar=new Car(carColor, carType,carNumber);
         this.rank = 0;
         this.trempsIds= new ArrayList<String>();

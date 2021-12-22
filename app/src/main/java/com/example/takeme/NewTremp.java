@@ -78,6 +78,12 @@ public class NewTremp extends AppCompatActivity {
                     seatsNum.setError("שדה חובה");
                     return;
                 }
+                int seats=Integer.parseInt(txtSeatsNum);
+                if(seats<1||seats>7)
+                {
+                    seatsNum.setError("מספר מקומות לא תקין");
+                    return;
+                }
 
                 DataBase.createTremp("tremps",txtSrcCity, txtDestCity, txtTime, txtDate, Integer.parseInt(txtSeatsNum));
 

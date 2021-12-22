@@ -60,7 +60,7 @@ public class DriverInformation extends AppCompatActivity {
                 String phone = getIntent().getStringExtra("phone");
                 String id = getIntent().getStringExtra("id");
                 Boolean male = getIntent().getBooleanExtra("male", true);
-                DataBase.createDriver("users",name, lastName, email, phone, id ,StringNumberCar,StringTypeCar,StringColor, male);
+                DataBase.createDriver("users",name, lastName, email, phone, id ,StringNumberCar,StringTypeCar,StringColor, male,true);
                 startActivity(new Intent(DriverInformation.this,MainActivity.class));
             }
         });

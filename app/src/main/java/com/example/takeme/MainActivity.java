@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,10 +21,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
     Button buttLog;
+    public static final String TAG = "TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-
-                            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+                              if (!DataBase.isDriver())
+                                  startActivity(new Intent(getApplicationContext(), TrempistDashboard.class).putExtra("UID",DataBase.getID()));
+//                            DatabaseReference rootRef = DataBase.getInstance();
+//                            DatabaseReference usersRef = rootRef.child("Users");
+//                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
+                           startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+//                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
