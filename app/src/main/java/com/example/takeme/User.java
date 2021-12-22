@@ -5,7 +5,7 @@ import android.widget.EditText;
 
 public class User {
     String name, lastName, email, phone, id;
-    Boolean gender;
+    Boolean gender,isDriver;
 
     public String getGender()
     {
@@ -13,7 +13,9 @@ public class User {
             return "Male";
         return "Female";
     }
-
+    public Boolean getIsDriver(){
+        return isDriver;
+    }
     public String getName()
     {
         return name;
@@ -42,7 +44,7 @@ public class User {
     public User(){
 
     }
-    public User(String name, String lastName, String email, String phone, String id, Boolean gender)
+    public User(String name, String lastName, String email, String phone, String id, Boolean gender,Boolean isDriver)
     {
         this.name = name;
         this.lastName = lastName;
@@ -50,7 +52,7 @@ public class User {
         this.phone = phone;
         this.id = id;
         this.gender = gender;
-
+        this.isDriver=isDriver;
     }
 
 }

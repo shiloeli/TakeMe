@@ -27,7 +27,7 @@ public class UserRegister extends AppCompatActivity {
     Button button;
     EditText emailAddress, password, name, lastName, phone, cv, password2;
     RadioButton male, female;
-    Switch driver, passenger;
+    Switch driver;
     String userID;
 
 
@@ -46,7 +46,6 @@ public class UserRegister extends AppCompatActivity {
         male = (RadioButton) findViewById(R.id.reg_male);
         female = (RadioButton) findViewById(R.id.reg_female);
         driver = (Switch) findViewById(R.id.reg_driver);
-        passenger = (Switch) findViewById(R.id.reg_passenger);
         button = (Button) findViewById(R.id.button_connect);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -101,12 +100,7 @@ public class UserRegister extends AppCompatActivity {
                     password2.setError("הסיסמאות אינן תואמות!");
                     return;
                 }
-                if(!driver.isChecked() && !passenger.isChecked())
-                {
-                    driver.setError("");
-                    passenger.setError("");
-                    return;
-                }
+
 
                 DataBase.CreateUser(txtEmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

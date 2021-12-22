@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserRegister"
-    android:background="@drawable/background12">
+    android:background="@drawable/background22">
 
     <Button
         android:id="@+id/button_connect"
@@ -133,20 +133,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.304" />
 
-    <Switch
-        android:id="@+id/reg_passenger"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:text="נוסע"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
-
     <RadioGroup
         android:layout_width="100dp"
         android:layout_height="99dp"
@@ -185,7 +171,7 @@
         app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.654"
+        app:layout_constraintVertical_bias="0.677"
         tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
 

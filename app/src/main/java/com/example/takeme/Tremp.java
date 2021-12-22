@@ -8,9 +8,7 @@ public class Tremp {
     String driverId;
     ArrayList<String> passengersIds;
 
-    public Tremp(){
-
-    }
+    public Tremp(){}
 
     public Tremp(String src, String dest, String hour, String date, int seats,String driverId){
         this.passengersIds = new ArrayList<String>();
