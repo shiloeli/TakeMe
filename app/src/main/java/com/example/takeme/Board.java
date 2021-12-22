@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +20,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 public class Board extends AppCompatActivity {
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
-    EditText src, dest;
+    private EditText src, dest;
+
+    private Button search;
 
 
     @Override
@@ -31,14 +31,22 @@ public class Board extends AppCompatActivity {
         setContentView(R.layout.activity_board);
         fireStoreTremps = findViewById(R.id.recycleTremp);
         fireStoreTremps.setHasFixedSize(true);
+
         src = (EditText) findViewById(R.id.srcText);
         dest = (EditText) findViewById(R.id.destText);
         String StringtxtSrc = src.getText().toString();
         String StringtxtDest = dest.getText().toString();
+        search = (Button) findViewById(R.id.buttonSearch);
 
+//        search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                firebaseUserSearch();
+//            }
+//        });
+//        FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
 
-        Button searchButton=(Button)findViewById(R.id.buttonSearch);
-        searchButton.setOnClickListener(new View.OnClickListener() {
+        search.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -51,7 +59,6 @@ public class Board extends AppCompatActivity {
                         return new TrempViewHolder(view);
                     }
 
-                    @Override
                     protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
                         holder.date.setText(model.getDate());
                         holder.destCity.setText(model.getDest());
@@ -69,6 +76,23 @@ public class Board extends AppCompatActivity {
 //                fireStoreTremps.setLayoutManager(new LinearLayoutManager(this));
                 fireStoreTremps.setAdapter(adapter);
             }
+
+
+//    private void firebaseUserSearch() {
+//        FirestoreRecyclerAdapter<User,TrempViewHolder> firestoreRecyclerAdapter=new FirestoreRecyclerAdapter<User, TrempViewHolder>() {
+//            @Override
+//            protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull User model) {
+//
+//            }
+//
+//            @NonNull
+//            @Override
+//            public TrempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                return null;
+//            }
+//        };
+//
+//    }
 
             class TrempViewHolder extends RecyclerView.ViewHolder {
                 private TextView destCity;
@@ -111,6 +135,7 @@ public class Board extends AppCompatActivity {
         });
     }
 
+
     @Override
         protected void onStop () {
             super.onStop();
@@ -123,4 +148,3 @@ public class Board extends AppCompatActivity {
             adapter.startListening();
         }
 }
-

@@ -2,6 +2,7 @@ package com.example.takeme;
 
 import android.util.Log;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -108,6 +109,6 @@ public class DataBase {
                 .build();
         return options;
     }
-
+    
 }
 
