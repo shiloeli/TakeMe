@@ -1,33 +1,25 @@
 package com.example.takeme;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
+    TextView txtForgotPass;
     Button buttLog;
 
     @Override
@@ -42,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
-        buttLog = (Button)findViewById(R.id.btnSend);
+        buttLog = (Button)findViewById(R.id.ForgotPassButton);
+        txtForgotPass=(TextView)findViewById(R.id.forgotPass);
 
         buttLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
         startActivity(intenet);
     }
+    public void onClickForgot(View view) {
+        Intent intenet = new Intent(MainActivity.this, ForgotPassword.class).putExtra("UID",DataBase.getID());
+        startActivity(intenet);
+    }
+
 
 
 }

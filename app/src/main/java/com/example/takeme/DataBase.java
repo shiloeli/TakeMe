@@ -2,11 +2,9 @@ package com.example.takeme;
 
 import android.util.Log;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -16,10 +14,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class DataBase {
     public static final String TAG = "TAG";
@@ -124,6 +118,10 @@ public class DataBase {
             }
         });
 
+    }
+
+    public static Task<Void> forgotPassword(String email) {
+       return mAuth.sendPasswordResetEmail(email);
     }
 }
 

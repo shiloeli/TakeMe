@@ -125,6 +125,7 @@ public class Board extends AppCompatActivity  {
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
                         DataBase.trempistJoinsTremp(id);
+
                     }
                 });
             }
