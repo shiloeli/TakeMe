@@ -1,21 +1,24 @@
 package com.example.takeme;
 
 import android.util.Log;
+import android.widget.TextView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import androidx.annotation.NonNull;
+
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataBase {
@@ -23,6 +26,7 @@ public class DataBase {
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
+
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
     }
@@ -110,7 +114,17 @@ public class DataBase {
         return options;
     }
 
+    public static void setNumberDriver(String id, TextView view) {
+        documentReference = fStore.collection("users").document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver user = documentSnapshot.toObject(Driver.class);
+                view.setText(user.phone);
+            }
+        });
 
-
+    }
 }
+
 

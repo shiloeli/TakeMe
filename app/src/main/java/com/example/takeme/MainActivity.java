@@ -17,10 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
@@ -30,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+//        String name = fStore.collection("users").document("0rI81VAz6UQZlXAqzBwEyyST0tg2");
+//        System.out.println("------------------------"+name+"----------------------------");
+
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
@@ -58,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //                            DatabaseReference rootRef = DataBase.getInstance();
 //                            DatabaseReference usersRef = rootRef.child("Users");
 //                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
+
                             startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
 //                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
                         }else{

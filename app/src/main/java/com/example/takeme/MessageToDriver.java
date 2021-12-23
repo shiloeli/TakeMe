@@ -22,10 +22,13 @@ public class MessageToDriver extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_to_driver);
+        Bundle bundle = getIntent().getExtras();
 
         number = findViewById(R.id.driverNumber);
         message = findViewById(R.id.bodyMessage);
         send = findViewById(R.id.sendMessage);
+
+        DataBase.setNumberDriver(bundle.getString("driverId"),number);
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
