@@ -15,8 +15,9 @@
 
 
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/imageView4"
 
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
@@ -67,7 +68,7 @@
         app:layout_constraintVertical_bias="0.434" />
 
     <Button
-        android:id="@+id/btnSend"
+        android:id="@+id/ForgotPassButton"
         android:layout_width="124dp"
         android:layout_height="64dp"
         android:background="@drawable/rounded_button"
@@ -122,6 +123,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.344"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/forgotPass"
+        android:layout_width="118dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#404040"
+        android:onClick="onClickForgot"
+        android:text="שכחתי סיסמא"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

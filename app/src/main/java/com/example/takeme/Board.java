@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class Board extends AppCompatActivity  {
     private RecyclerView fireStoreTremps;
@@ -52,6 +55,7 @@ public class Board extends AppCompatActivity  {
 
             @Override
             protected void onBindViewHolder(@NonNull TrempViewHolder holder, int position, @NonNull Tremp model) {
+                holder.driverId = model.driverId;
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.sourceCity.setText(model.getSrc());
@@ -87,6 +91,7 @@ public class Board extends AppCompatActivity  {
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
+            private String driverId;
             private TextView destCity;
             private TextView sourceCity;
             private TextView date;
@@ -109,8 +114,8 @@ public class Board extends AppCompatActivity  {
                 message.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Intent intent=new Intent(Board.this, MessageToDriver.class);
+                        intent.putExtra("driverId", driverId);
                         startActivity(intent);
                     }
                 });
@@ -120,6 +125,7 @@ public class Board extends AppCompatActivity  {
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
                         DataBase.trempistJoinsTremp(id);
+
                     }
                 });
             }

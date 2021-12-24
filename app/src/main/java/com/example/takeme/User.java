@@ -13,6 +13,13 @@ public class User {
             return "Male";
         return "Female";
     }
+
+    public void setGender(String g){
+        if(g == "Male")this.gender = true;
+        else{
+            this.gender = false;
+        }
+    }
     public Boolean getIsDriver(){
         return isDriver;
     }

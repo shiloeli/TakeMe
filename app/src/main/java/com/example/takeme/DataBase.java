@@ -1,31 +1,34 @@
 package com.example.takeme;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+
 
 public class DataBase {
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
+
+
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
     }
@@ -47,14 +50,23 @@ public class DataBase {
         });
     }
 
-//    public static boolean isDriver()
-//    {
-//        boolean ans;
-//        fStore.collection("users").document(getID()).
+    public static void isDriver(Intent Driver , Intent Trempist) {
+//        fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.contains("myCar"))
+//                {
+//                    Log.d(TAG, "Its a Driver");
+//                    startActivity(D);
+//                }
+//                else {
+//                    Log.d(TAG, "Its a Trempist");
+//                    startActivity(new Intent(getApplicationContext(), TrempistDashboard.class).putExtra("UID",DataBase.getID()));
+//                }
 //
-//        boolean ans= fStore.collection("users").document(getID()).get().getResult().contains("myCar");
-//        return ans;
-//    }
+//            }
+//        });
+    }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document();
@@ -121,7 +133,21 @@ public class DataBase {
         return options;
     }
 
+    public static void setNumberDriver(String id, TextView view) {
+        documentReference = fStore.collection("users").document(id);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver user = documentSnapshot.toObject(Driver.class);
+                view.setText(user.phone);
+            }
+        });
 
+    }
 
+    public static Task<Void> forgotPassword(String email) {
+       return mAuth.sendPasswordResetEmail(email);
+    }
 }
+
 
