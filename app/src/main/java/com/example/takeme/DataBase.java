@@ -108,6 +108,14 @@ public class DataBase {
         });
 
     }
+    public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
+        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).orderBy("seats");
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
         Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()

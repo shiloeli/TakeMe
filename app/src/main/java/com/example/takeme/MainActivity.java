@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else {
                                         Log.d(TAG, "Its a Trempist");
-                                        startActivity(new Intent(getApplicationContext(), TrempistDashboard.class));
+                                        startActivity(new Intent(getApplicationContext(), Board.class));
                                     }
 
                                 }
