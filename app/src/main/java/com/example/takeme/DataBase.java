@@ -1,12 +1,13 @@
 package com.example.takeme;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,11 +18,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class DataBase {
+public class DataBase extends AppCompatActivity{
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
@@ -123,8 +120,8 @@ public class DataBase {
                 view.setText(user.phone);
             }
         });
-
     }
+
 }
 
 

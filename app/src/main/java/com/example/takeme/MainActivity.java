@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,16 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
     Button buttLog;
+    Boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-//        String name = fStore.collection("users").document("0rI81VAz6UQZlXAqzBwEyyST0tg2");
-//        System.out.println("------------------------"+name+"----------------------------");
-
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
@@ -64,12 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-//                            DatabaseReference rootRef = DataBase.getInstance();
-//                            DatabaseReference usersRef = rootRef.child("Users");
-//                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
-
                             startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
-//                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -78,11 +70,16 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
     public void onClickReg(View view) {
         Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
         startActivity(intenet);
     }
+
+
+
+
 
 
 }

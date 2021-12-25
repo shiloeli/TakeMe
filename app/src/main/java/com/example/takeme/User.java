@@ -4,8 +4,8 @@ import android.text.BoringLayout;
 import android.widget.EditText;
 
 public class User {
-    String name, lastName, email, phone, id;
-    Boolean gender,isDriver;
+    String name, lastName, email, phone, id ;
+    Boolean gender, isDriver;
 
     public String getGender()
     {
@@ -60,6 +60,7 @@ public class User {
         this.id = id;
         this.gender = gender;
         this.isDriver=isDriver;
+
     }
 
 }

@@ -2,10 +2,16 @@ package com.example.takeme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +42,12 @@ public class Board extends AppCompatActivity  {
         srcSearch=(EditText)findViewById(R.id.srcText);
         destSearch=(EditText)findViewById(R.id.destText);
         search=(Button)findViewById(R.id.buttonSearch);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel2 = new NotificationChannel("My Notification2", "My Notification2", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager2 = getSystemService(NotificationManager.class);
+            manager2.createNotificationChannel(channel2);
+        }
 
 //        search.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -119,12 +131,22 @@ public class Board extends AppCompatActivity  {
                         startActivity(intent);
                     }
                 });
+
                 enrollment = itemView.findViewById(R.id.registration);
                 enrollment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
                         DataBase.trempistJoinsTremp(id);
+
+                        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(Board.this, "My Notification2");
+                        builder2.setContentTitle("הצטרפת לטרמפ");
+                        builder2.setContentText(tremp.dest+" ל "+tremp.src+"הצטרפת לטרמפ מ ");
+                        builder2.setSmallIcon(R.drawable.logo2);
+                        builder2.setAutoCancel(true);
+
+                        NotificationManagerCompat managerCompat2 = NotificationManagerCompat.from(Board.this);
+                        managerCompat2.notify(2,builder2.build());
                     }
                 });
             }
