@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".TrempistTrempsList$DriverViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistTrempsList"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
@@ -19,9 +28,6 @@
             android:exported="false" />
         <activity
             android:name=".TrempList"
-            android:exported="false" />
-        <activity
-            android:name=".TrempistDashboard"
             android:exported="false" />
         <activity
             android:name=".DriverInformation"

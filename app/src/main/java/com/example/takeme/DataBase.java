@@ -101,7 +101,14 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
-        Query query = fStore.collection(collection).whereNotEqualTo("driverId",getID());
+        Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+    }
+    public static FirestoreRecyclerOptions<Tremp> trempistTremps(String collection){
+        Query query = fStore.collection(collection).whereArrayContains("passengersIds",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
