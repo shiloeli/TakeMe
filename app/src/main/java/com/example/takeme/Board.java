@@ -37,12 +37,11 @@ public class Board extends AppCompatActivity  {
         destSearch=(EditText)findViewById(R.id.destText);
         search=(Button)findViewById(R.id.buttonSearch);
 
-//        search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                firebaseUserSearch();
-//            }
-//        });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
 
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
@@ -91,57 +90,57 @@ public class Board extends AppCompatActivity  {
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
-            private String driverId;
-            private TextView destCity;
-            private TextView sourceCity;
-            private TextView date;
-            private TextView hour;
-            private Button enrollment, message;
+        private String driverId;
+        private TextView destCity;
+        private TextView sourceCity;
+        private TextView date;
+        private TextView hour;
+        private Button enrollment, message;
 
-            private TextView numberOfSeats;
-            int position;
-            Tremp tremp;
-            String id;
+        private TextView numberOfSeats;
+        int position;
+        Tremp tremp;
+        String id;
 
-            public TrempViewHolder(@NonNull View itemView) {
-                super(itemView);
-                destCity = itemView.findViewById(R.id.destCity);
-                sourceCity=itemView.findViewById(R.id.sourceCity);
-                date = itemView.findViewById(R.id.dateTremp);
-                hour = itemView.findViewById(R.id.hourTremp);
-                numberOfSeats = itemView.findViewById(R.id.numOfSeats);
-                message = itemView.findViewById(R.id.messageForDriver);
-                message.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(Board.this, MessageToDriver.class);
-                        intent.putExtra("driverId", driverId);
-                        startActivity(intent);
-                    }
-                });
-                enrollment = itemView.findViewById(R.id.registration);
-                enrollment.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
-                        DataBase.trempistJoinsTremp(id);
+        public TrempViewHolder(@NonNull View itemView) {
+            super(itemView);
+            destCity = itemView.findViewById(R.id.destCity);
+            sourceCity=itemView.findViewById(R.id.sourceCity);
+            date = itemView.findViewById(R.id.dateTremp);
+            hour = itemView.findViewById(R.id.hourTremp);
+            numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+            message = itemView.findViewById(R.id.messageForDriver);
+            message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(Board.this, MessageToDriver.class);
+                    intent.putExtra("driverId", driverId);
+                    startActivity(intent);
+                }
+            });
+            enrollment = itemView.findViewById(R.id.registration);
+            enrollment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+                    DataBase.trempistJoinsTremp(id);
 
-                    }
-                });
-            }
+                }
+            });
         }
+    }
 
 
     @Override
-        protected void onStop () {
-            super.onStop();
-            adapter.stopListening();
-        }
+    protected void onStop () {
+        super.onStop();
+        adapter.stopListening();
+    }
 
-        @Override
-        protected void onStart () {
-            super.onStart();
-            adapter.startListening();
-        }
+    @Override
+    protected void onStart () {
+        super.onStart();
+        adapter.startListening();
+    }
 
 }

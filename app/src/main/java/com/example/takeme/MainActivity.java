@@ -3,6 +3,7 @@ package com.example.takeme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +14,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
     TextView txtForgotPass;
     Button buttLog;
+    public static final String TAG = "TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-//        String name = fStore.collection("users").document("0rI81VAz6UQZlXAqzBwEyyST0tg2");
-//        System.out.println("------------------------"+name+"----------------------------");
 
 
         txtName=( EditText)findViewById(R.id.textEmail);
@@ -56,13 +60,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-//                            DatabaseReference rootRef = DataBase.getInstance();
-//                            DatabaseReference usersRef = rootRef.child("Users");
-//                            if(usersRef.child(DataBase.getID()).child(isDriver)==false)
+                            fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.contains("myCar"))
+                                    {
+                                        Log.d(TAG, "Its a Driver");
+                                        startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+                                    }
+                                    else {
+                                        Log.d(TAG, "Its a Trempist");
+                                        startActivity(new Intent(getApplicationContext(), Board.class));
+                                    }
 
-                            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
-//                            else startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+                                }
+                            });
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 

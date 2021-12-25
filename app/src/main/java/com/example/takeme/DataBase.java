@@ -1,12 +1,15 @@
 package com.example.takeme;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -15,11 +18,16 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+
+
 public class DataBase {
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
+
 
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
@@ -42,6 +50,23 @@ public class DataBase {
         });
     }
 
+    public static void isDriver(Intent Driver , Intent Trempist) {
+//        fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.contains("myCar"))
+//                {
+//                    Log.d(TAG, "Its a Driver");
+//                    startActivity(D);
+//                }
+//                else {
+//                    Log.d(TAG, "Its a Trempist");
+//                    startActivity(new Intent(getApplicationContext(), TrempistDashboard.class).putExtra("UID",DataBase.getID()));
+//                }
+//
+//            }
+//        });
+    }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document();
@@ -81,6 +106,14 @@ public class DataBase {
                 Log.d(TAG, "onSuccess: Trempsist " + getID() + "joined tremp " +trempId + "Successfully ");
             }
         });
+
+    }
+    public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
+        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).orderBy("seats");
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
 
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
