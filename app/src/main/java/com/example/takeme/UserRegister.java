@@ -80,10 +80,22 @@ public class UserRegister extends AppCompatActivity {
                     phone.setError("נדרש מספר פלאפון");
                     return;
                 }
+                int phoneLen=txtPhone.length();
+                if(phoneLen!=10)
+                {
+                    phone.setError("מספר טלפון לא חוקי");
+                    return;
+                }
 
                 if(TextUtils.isEmpty(txtID))
                 {
                     cv.setError("נדרש מספר תעודת זהות");
+                    return;
+                }
+                int idLen=txtID.length();
+                if(idLen!=9)
+                {
+                    cv.setError("מספר תעודת זהות לא תקין");
                     return;
                 }
 

@@ -36,15 +36,21 @@ public class DriverInformation extends AppCompatActivity {
                 int StringNumberCar=Integer.parseInt(numbertxt.getText().toString());
                 String StringTypeCar=typetxt.getText().toString();
                 String StringColor=colortxt.getText().toString();
-
+                String StringNumCar=numbertxt.getText().toString();
                 if(TextUtils.isEmpty(StringTypeCar))
                 {
                     typetxt.setError("נדרש סוג רכב");
                     return;
                 }
-                if(TextUtils.isEmpty(numbertxt.getText().toString()))
+                if(TextUtils.isEmpty(StringNumCar))
                 {
                     numbertxt.setError("נדרש מספר רכב");
+                    return;
+                }
+                int carNumLen=StringNumCar.length();
+                if(carNumLen!=7)
+                {
+                    numbertxt.setError("מספר רכב לא תקין");
                     return;
                 }
                 if(TextUtils.isEmpty(StringColor))

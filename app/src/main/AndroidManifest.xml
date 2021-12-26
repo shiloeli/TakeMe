@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.takeme">
 
-<uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".TrempistTrempsList$DriverViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistTrempsList"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".MessageToDriver"
             android:exported="false" />
         <activity
             android:name=".TrempList"
-            android:exported="false" />
-        <activity
-            android:name=".TrempistDashboard"
             android:exported="false" />
         <activity
             android:name=".DriverInformation"

@@ -74,7 +74,7 @@
         tools:ignore="Autofill,HardcodedText" />
 
     <Button
-        android:id="@+id/buttonCreateTremp"
+        android:id="@+id/buttonSearchTremp"
         android:layout_width="153dp"
         android:layout_height="54dp"
         android:text="צור טרמפ"

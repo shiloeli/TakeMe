@@ -2,14 +2,13 @@ package com.example.takeme;
 
 import android.content.Intent;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,11 +17,13 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class DataBase extends AppCompatActivity{
+public class DataBase {
+
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
+
 
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
@@ -45,6 +46,23 @@ public class DataBase extends AppCompatActivity{
         });
     }
 
+    public static void isDriver(Intent Driver , Intent Trempist) {
+//        fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.contains("myCar"))
+//                {
+//                    Log.d(TAG, "Its a Driver");
+//                    startActivity(D);
+//                }
+//                else {
+//                    Log.d(TAG, "Its a Trempist");
+//                    startActivity(new Intent(getApplicationContext(), TrempistDashboard.class).putExtra("UID",DataBase.getID()));
+//                }
+//
+//            }
+//        });
+    }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
         String userDbId = getID();
         documentReference = fStore.collection(collection).document();
@@ -86,6 +104,14 @@ public class DataBase extends AppCompatActivity{
         });
 
     }
+    public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
+        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).orderBy("seats");
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+
+    }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
         Query query = fStore.collection(collection).whereGreaterThan("seats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -104,7 +130,14 @@ public class DataBase extends AppCompatActivity{
 
     }
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
-        Query query = fStore.collection(collection).whereNotEqualTo("driverId",getID());
+        Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
+        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
+                .setQuery(query, Tremp.class)
+                .build();
+        return options;
+    }
+    public static FirestoreRecyclerOptions<Tremp> trempistTremps(String collection){
+        Query query = fStore.collection(collection).whereArrayContains("passengersIds",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
@@ -122,6 +155,26 @@ public class DataBase extends AppCompatActivity{
         });
     }
 
+
+    public static Task<Void> forgotPassword(String email) {
+       return mAuth.sendPasswordResetEmail(email);
+    }
+
+    public static void welcomeUser(TextView view){
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                if(user.gender){
+                    view.setText(" ברוך הבא "+user.name+" ! ");
+                }else {
+                    view.setText(" ברוכה הבאה "+user.name+" ! ");
+                }
+
+            }
+        });
+    }
 }
 
 

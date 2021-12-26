@@ -14,18 +14,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -55,7 +48,7 @@ public class NewTremp extends AppCompatActivity {
         time = (Button) findViewById(R.id.timeButton);
         date = (Button) findViewById(R.id.datePickerButton);
         seatsNum = (EditText) findViewById(R.id.a_numberOfSeats);
-        trempButton = (Button) findViewById(R.id.buttonCreateTremp);
+        trempButton = (Button) findViewById(R.id.buttonSearchTremp);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);

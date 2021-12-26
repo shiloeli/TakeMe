@@ -15,28 +15,27 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class TrempList extends AppCompatActivity {
-    private RecyclerView fStoreTDriver;
+public class TrempistTrempsList extends AppCompatActivity {
+    private RecyclerView fStoreTrempist;
     private FirestoreRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tremp_list);
-
-        fStoreTDriver = findViewById(R.id.recycleDriver);
-        FirestoreRecyclerOptions<Tremp> options = DataBase.trempList("tremps");
-        adapter = new FirestoreRecyclerAdapter<Tremp, DriverViewHolder1>(options) {
+        setContentView(R.layout.activity_trempist_tremps_list);
+        fStoreTrempist = findViewById(R.id.recycleTrempist);
+        FirestoreRecyclerOptions<Tremp> options = DataBase.trempistTremps("tremps");
+        adapter = new FirestoreRecyclerAdapter<Tremp,TrempistViewHolder>(options) {
 
             @NonNull
             @Override
-            public DriverViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public TrempistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp_driver ,parent, false);
-                return new DriverViewHolder1(view);
+                return new TrempistViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull DriverViewHolder1 holder, int position, @NonNull Tremp model) {
+            protected void onBindViewHolder(@NonNull TrempistViewHolder holder, int position, @NonNull Tremp model) {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
@@ -48,29 +47,31 @@ public class TrempList extends AppCompatActivity {
             }
 
         };
-        fStoreTDriver.setHasFixedSize(true);
-        fStoreTDriver.setLayoutManager(new LinearLayoutManager(this));
-        fStoreTDriver.setAdapter(adapter);
+        fStoreTrempist.setHasFixedSize(true);
+        fStoreTrempist.setLayoutManager(new LinearLayoutManager(this));
+        fStoreTrempist.setAdapter(adapter);
 
     }
+
+
+
     public void onClickReturn(View view) {
-        startActivity(new Intent(getApplicationContext(), DriverDashboard.class));
+        Intent intent=new Intent(TrempistTrempsList.this, TrempistDashboard.class);
+        startActivity(intent);
     }
 
 
-
-    class DriverViewHolder1 extends RecyclerView.ViewHolder {
+    class TrempistViewHolder extends RecyclerView.ViewHolder {
         private TextView destCity;
         private TextView date;
         private TextView hour;
-        private TextView day;
         private TextView numberOfSeats;
         int position;
         Tremp tremp;
         String id;
 
 
-        public DriverViewHolder1(@NonNull View itemView) {
+        public TrempistViewHolder(@NonNull View itemView) {
             super(itemView);
             destCity = itemView.findViewById(R.id.destCity);
             date = itemView.findViewById(R.id.dateTremp);
@@ -90,4 +91,5 @@ public class TrempList extends AppCompatActivity {
         super.onStart();
         adapter.startListening();
     }
+
 }

@@ -43,18 +43,20 @@ public class Board extends AppCompatActivity  {
         destSearch=(EditText)findViewById(R.id.destText);
         search=(Button)findViewById(R.id.buttonSearch);
 
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel2 = new NotificationChannel("My Notification2", "My Notification2", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager2 = getSystemService(NotificationManager.class);
             manager2.createNotificationChannel(channel2);
         }
 
-//        search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                firebaseUserSearch();
-//            }
-//        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
         FirestoreRecyclerOptions<Tremp> options = DataBase.Board("tremps");
 
         adapter = new FirestoreRecyclerAdapter<Tremp, TrempViewHolder>(options) {
@@ -103,6 +105,7 @@ public class Board extends AppCompatActivity  {
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
+
             private String driverId;
             private TextView destCity;
             private TextView sourceCity;
@@ -152,17 +155,16 @@ public class Board extends AppCompatActivity  {
             }
         }
 
+    @Override
+    protected void onStop () {
+        super.onStop();
+        adapter.stopListening();
+    }
 
     @Override
-        protected void onStop () {
-            super.onStop();
-            adapter.stopListening();
-        }
-
-        @Override
-        protected void onStart () {
-            super.onStart();
-            adapter.startListening();
-        }
+    protected void onStart () {
+        super.onStart();
+        adapter.startListening();
+    }
 
 }

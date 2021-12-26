@@ -1,14 +1,10 @@
 package com.example.takeme;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,25 +17,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.ExecutionException;
+
 public class MainActivity extends AppCompatActivity {
     EditText txtPassword, txtName;
+    TextView txtForgotPass;
     Button buttLog;
-    Boolean flag;
+    public static final String TAG = "TAG";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
-        buttLog = (Button)findViewById(R.id.btnSend);
+        buttLog = (Button)findViewById(R.id.ForgotPassButton);
+        txtForgotPass=(TextView)findViewById(R.id.forgotPass);
 
         buttLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +60,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "התחברות בוצעה בהצלחה", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class).putExtra("UID",DataBase.getID()));
+                            fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.contains("myCar"))
+                                    {
+                                        Log.d(TAG, "Its a Driver");
+                                        startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
+                                    }
+                                    else {
+                                        Log.d(TAG, "Its a Trempist");
+                                        startActivity(new Intent(getApplicationContext(), TrempistDashboard.class));
+                                    }
+
+                                }
+                            });
                         }else{
                             Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -76,10 +89,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
         startActivity(intenet);
     }
-
-
-
-
-
+    public void onClickForgot(View view) {
+        Intent intenet = new Intent(MainActivity.this, ForgotPassword.class).putExtra("UID",DataBase.getID());
+        startActivity(intenet);
+    }
 
 }
