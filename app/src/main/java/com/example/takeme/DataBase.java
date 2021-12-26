@@ -5,6 +5,8 @@ import android.util.Log;
 
 import android.widget.TextView;
 
+import androidx.core.app.NotificationCompat;
+
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -155,6 +157,12 @@ public class DataBase {
         });
     }
 
+    public static Query search(String a, String b) {
+        Query query = fStore.collection("tremps").whereEqualTo("src", a)
+                .whereEqualTo("dest", b)
+                .orderBy("seats");
+        return query;
+    }
 
     public static Task<Void> forgotPassword(String email) {
        return mAuth.sendPasswordResetEmail(email);
@@ -174,6 +182,18 @@ public class DataBase {
 
             }
         });
+    }
+
+    public static void setNotification(NotificationCompat.Builder builder, Tremp tremp){
+        documentReference = fStore.collection("users").document(tremp.driverId);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver user = documentSnapshot.toObject(Driver.class);
+                builder.setContentText(user.myCar.carColor+" בצבע "+user.myCar.carType+"רכב מסוג "+"\n"+tremp.dest+" ל "+tremp.src+" מ "+user.name+"הצטרפת לטרמפ של ");
+            }
+        });
+
     }
 }
 
