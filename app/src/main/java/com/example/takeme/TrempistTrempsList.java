@@ -30,7 +30,7 @@ public class TrempistTrempsList extends AppCompatActivity {
             @NonNull
             @Override
             public TrempistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp_driver ,parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_tremp_trempist ,parent, false);
                 return new TrempistViewHolder(view);
             }
 

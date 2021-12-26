@@ -179,6 +179,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -337,8 +338,27 @@ public class Board extends AppCompatActivity  {
                     managerCompat2.notify(2,builder2.build());
                 }
             });
+                enrollment = itemView.findViewById(R.id.registration);
+                enrollment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
+                        DataBase.trempistJoinsTremp(id);
+
+                        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(Board.this, "My Notification2");
+                        builder2.setContentTitle("הצטרפת לטרמפ");
+                        DataBase.setNotification(builder2, tremp);
+//                        builder2.setContentText(tremp.dest+" ל "+tremp.src+"הצטרפת לטרמפ מ ");
+                        builder2.setSmallIcon(R.drawable.logo2);
+                        builder2.setAutoCancel(true);
+
+                        NotificationManagerCompat managerCompat2 = NotificationManagerCompat.from(Board.this);
+                        managerCompat2.notify(2,builder2.build());
+                    }
+                });
+            }
         }
-    }
+
 
     @Override
     protected void onStop () {
