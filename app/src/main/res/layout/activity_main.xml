@@ -6,17 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--        android:background="
-"-->
-
-
     <ImageView
         android:id="@+id/imageView4"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -126,19 +117,19 @@
 
     <Button
         android:id="@+id/forgotPass"
-        android:layout_width="118dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#404040"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:background="@drawable/rounded_button"
         android:onClick="onClickForgot"
-        android:text="שכחתי סיסמא"
+        android:text="שכחתי סיסמה"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintVertical_bias="0.791" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

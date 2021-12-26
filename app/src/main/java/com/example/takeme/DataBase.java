@@ -1,15 +1,14 @@
 package com.example.takeme;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.util.Log;
+
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,11 +17,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-
-
 public class DataBase {
+
     public static final String TAG = "TAG";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
@@ -157,18 +153,33 @@ public class DataBase {
                 view.setText(user.phone);
             }
         });
-
     }
+
 
     public static Task<Void> forgotPassword(String email) {
        return mAuth.sendPasswordResetEmail(email);
     }
 
-    public static Query search(String a, String b){
-        Query query = fStore.collection("tremps").whereEqualTo("src",a)
+    public static Query search(String a, String b) {
+        Query query = fStore.collection("tremps").whereEqualTo("src", a)
                 .whereEqualTo("dest", b)
                 .orderBy("seats");
         return query;
+    }
+    public static void welcomeUser(TextView view){
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                if(user.gender){
+                    view.setText(" ברוך הבא "+user.name+" ! ");
+                }else {
+                    view.setText(" ברוכה הבאה "+user.name+" ! ");
+                }
+
+            }
+        });
     }
 }
 

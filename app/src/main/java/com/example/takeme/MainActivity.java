@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
     Button buttLog;
     public static final String TAG = "TAG";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-
 
         txtName=( EditText)findViewById(R.id.textEmail);
         txtPassword=( EditText)findViewById(R.id.txtPassword);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     else {
                                         Log.d(TAG, "Its a Trempist");
-                                        startActivity(new Intent(getApplicationContext(), Board.class));
+                                        startActivity(new Intent(getApplicationContext(), TrempistDashboard.class));
                                     }
 
                                 }
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
     public void onClickReg(View view) {
         Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
@@ -92,7 +93,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intenet = new Intent(MainActivity.this, ForgotPassword.class).putExtra("UID",DataBase.getID());
         startActivity(intenet);
     }
-
-
 
 }
