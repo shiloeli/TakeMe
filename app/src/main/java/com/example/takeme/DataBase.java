@@ -92,10 +92,10 @@ public class DataBase {
     public static void trempistJoinsTremp (String trempId)
     {
         documentReference = fStore.collection("tremps").document(trempId);
-        documentReference.update("seats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReference.update("takenSeats", FieldValue.increment(1)).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d(TAG, "onSuccess: Tremps seats updated for tremp  " + trempId);
+                Log.d(TAG, "Tremps details updated successfully for user : " + getID() );
             }
         });
         documentReference.update("passengersIds",FieldValue.arrayUnion(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -77,6 +77,8 @@ public class Board extends AppCompatActivity  {
                 holder.hour.setText(model.getHour());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
                 holder.position=holder.getAdapterPosition();
+                holder.takenSeats.setText(model.getTakenSeats());
+                holder.emptySeats.setText(model.getSeats()-model.getTakenSeats());
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
                 holder.id=options.getSnapshots().getSnapshot(position).getId();
@@ -106,7 +108,8 @@ public class Board extends AppCompatActivity  {
 
 
     class TrempViewHolder extends RecyclerView.ViewHolder {
-
+            private TextView takenSeats;
+            private TextView emptySeats;
             private String driverId;
             private TextView destCity;
             private TextView sourceCity;
