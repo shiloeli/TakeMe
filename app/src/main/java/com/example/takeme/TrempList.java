@@ -41,6 +41,7 @@ public class TrempList extends AppCompatActivity {
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
                 holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                holder.emptySeats.setText(String.valueOf(model.getEmptySeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
@@ -63,7 +64,7 @@ public class TrempList extends AppCompatActivity {
         private TextView destCity;
         private TextView date;
         private TextView hour;
-        private TextView day;
+        private TextView emptySeats;
         private TextView numberOfSeats;
         int position;
         Tremp tremp;
@@ -72,6 +73,7 @@ public class TrempList extends AppCompatActivity {
 
         public DriverViewHolder1(@NonNull View itemView) {
             super(itemView);
+            emptySeats = itemView.findViewById(R.id.numOfEmptySeats);
             destCity = itemView.findViewById(R.id.destCity);
             date = itemView.findViewById(R.id.dateTremp);
             hour = itemView.findViewById(R.id.hourTremp);

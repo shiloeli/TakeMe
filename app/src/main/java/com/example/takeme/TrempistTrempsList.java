@@ -39,7 +39,7 @@ public class TrempistTrempsList extends AppCompatActivity {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
-                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                holder.numberOfSeats.setText(String.valueOf(model.getEmptySeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
@@ -61,6 +61,7 @@ public class TrempistTrempsList extends AppCompatActivity {
     }
 
 
+
     class TrempistViewHolder extends RecyclerView.ViewHolder {
         private TextView destCity;
         private TextView date;
@@ -77,6 +78,8 @@ public class TrempistTrempsList extends AppCompatActivity {
             date = itemView.findViewById(R.id.dateTremp);
             hour = itemView.findViewById(R.id.hourTremp);
             numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+
+
         }
     }
 
