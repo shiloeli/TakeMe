@@ -1,11 +1,17 @@
 package com.example.takeme;
 
+import android.app.Notification;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.Log;
 
 import android.widget.TextView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -184,16 +190,26 @@ public class DataBase {
         });
     }
 
-    public static void setNotification(NotificationCompat.Builder builder, Tremp tremp){
+    public static void setNotification(NotificationCompat.Builder builder, NotificationManagerCompat managerCompat, Tremp tremp){
         documentReference = fStore.collection("users").document(tremp.driverId);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Driver user = documentSnapshot.toObject(Driver.class);
-                builder.setContentText(user.myCar.carColor+" בצבע "+user.myCar.carType+"רכב מסוג "+"\n"+tremp.dest+" ל "+tremp.src+" מ "+user.name+"הצטרפת לטרמפ של ");
+                String message = user.myCar.carColor+" בצבע "+user.myCar.carType+" רכב מסוג ,"+tremp.dest+" ל "+tremp.src+" מ "+user.name+" הצטרפת לטרמפ של";
+                builder.setContentTitle("הצטרפת לטרמפ");
+                builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+//                Bitmap bitmapIcon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.logo2);
+//                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                    builder.setSmallIcon(R.drawable.logo2).setLargeIcon(bitmapIcon);
+//                } else {
+                    builder.setSmallIcon(R.drawable.logo2);
+//                }
+
+                builder.setAutoCancel(true);
+                managerCompat.notify(2,builder.build());
             }
         });
-
     }
 }
 

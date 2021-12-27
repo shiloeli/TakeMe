@@ -66,6 +66,7 @@ public class TrempistTrempsList extends AppCompatActivity {
         private TextView date;
         private TextView hour;
         private TextView numberOfSeats;
+        private TextView deleteButton;
         int position;
         Tremp tremp;
         String id;
@@ -77,6 +78,13 @@ public class TrempistTrempsList extends AppCompatActivity {
             date = itemView.findViewById(R.id.dateTremp);
             hour = itemView.findViewById(R.id.hourTremp);
             numberOfSeats = itemView.findViewById(R.id.numOfSeats);
+            deleteButton = itemView.findViewById(R.id.deleteButtonTremp);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 
