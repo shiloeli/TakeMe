@@ -126,7 +126,7 @@
         app:layout_constraintVertical_bias="0.504" />
 
     <Button
-        android:id="@+id/messageForDriver"
+        android:id="@+id/deleteButtonTremp"
         android:layout_width="144dp"
         android:layout_height="38dp"
         android:background="@drawable/rounded_button"

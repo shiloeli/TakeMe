@@ -153,9 +153,15 @@
         app:layout_constraintVertical_bias="0.832" />
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/messageForDriver"
         android:layout_width="138dp"
         android:layout_height="29dp"
+=======
+        android:id="@+id/deleteButtonTrempDriver"
+        android:layout_width="144dp"
+        android:layout_height="38dp"
+>>>>>>> 4900dbf6b7c7c17d37d4e3ec834e2a41e8f0f96a
         android:background="@drawable/rounded_button"
         android:text="מחק טרמפ"
         android:textColor="@color/white"

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe">
         <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".TrempistTrempsList$DriverViewHolder"
             android:exported="false" />
         <activity
