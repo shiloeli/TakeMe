@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
         app:layout_constraintVertical_bias="0.905" />
 
 
@@ -40,6 +41,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="יעד"
+        android:drawableStart="@android:drawable/ic_menu_search"
+
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -56,6 +59,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="מוצא"
+        android:drawableStart="@android:drawable/ic_menu_search"
+
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textAlignment="center"

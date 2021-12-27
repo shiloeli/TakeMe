@@ -163,17 +163,18 @@ public class DataBase {
         });
     }
 
+
+
+    public static Task<Void> forgotPassword(String email) {
+       return mAuth.sendPasswordResetEmail(email);
+    }
+
     public static Query search(String a, String b) {
         Query query = fStore.collection("tremps").whereEqualTo("src", a)
                 .whereEqualTo("dest", b)
                 .orderBy("seats");
         return query;
     }
-
-    public static Task<Void> forgotPassword(String email) {
-       return mAuth.sendPasswordResetEmail(email);
-    }
-
     public static void welcomeUser(TextView view){
         documentReference = fStore.collection("users").document(getID());
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
