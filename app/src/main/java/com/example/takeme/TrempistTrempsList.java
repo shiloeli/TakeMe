@@ -83,7 +83,7 @@ public class TrempistTrempsList extends AppCompatActivity {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    DataBase.trempistLeaveTremp(id);
                 }
             });
         }

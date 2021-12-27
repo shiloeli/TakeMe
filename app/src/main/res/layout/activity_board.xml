@@ -76,7 +76,6 @@
         android:layout_width="109dp"
         android:layout_height="50dp"
         android:background="@drawable/rounded_button"
-        android:onClick="onClickSearch"
         android:text="חפש"
         android:textColor="@color/white"
         android:textStyle="bold"

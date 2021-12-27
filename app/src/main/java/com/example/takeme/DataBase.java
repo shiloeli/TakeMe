@@ -189,7 +189,7 @@ public class DataBase {
 
     public static Query search(String a, String b) {
         Query query = fStore.collection("tremps").whereEqualTo("src", a)
-                .whereEqualTo("dest", b)
+                .whereEqualTo("dest", b).whereGreaterThan("emptySeats",0)
                 .orderBy("emptySeats");
         return query;
     }
