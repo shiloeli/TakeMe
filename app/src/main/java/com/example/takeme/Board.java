@@ -246,7 +246,7 @@ public class Board extends AppCompatActivity  {
                         holder.destCity.setText(model.getDest());
                         holder.sourceCity.setText(model.getSrc());
                         holder.hour.setText(model.getHour());
-                        holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                        holder.numberOfSeats.setText(String.valueOf(model.getEmptySeats()));
                         holder.position=holder.getAdapterPosition();
                         Tremp tremp=options.getSnapshots().get(position);
                         holder.tremp=tremp;
@@ -278,7 +278,7 @@ public class Board extends AppCompatActivity  {
                 holder.destCity.setText(model.getDest());
                 holder.sourceCity.setText(model.getSrc());
                 holder.hour.setText(model.getHour());
-                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                holder.numberOfSeats.setText(String.valueOf(model.getEmptySeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
@@ -331,7 +331,6 @@ public class Board extends AppCompatActivity  {
                 public void onClick(View v) {
                     Log.d("demo", "onClick: item clicked " + position + " tremp" + tremp.dest+"   "+id);
                     DataBase.trempistJoinsTremp(id);
-
                     NotificationCompat.Builder builder2 = new NotificationCompat.Builder(Board.this, "My Notification2");
                     builder2.setContentTitle("הצטרפת לטרמפ");
                     builder2.setContentText(tremp.dest+" ל "+tremp.src+"הצטרפת לטרמפ מ ");

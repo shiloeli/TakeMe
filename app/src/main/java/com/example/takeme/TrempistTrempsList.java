@@ -39,7 +39,7 @@ public class TrempistTrempsList extends AppCompatActivity {
                 holder.date.setText(model.getDate());
                 holder.destCity.setText(model.getDest());
                 holder.hour.setText(model.getHour());
-                holder.numberOfSeats.setText(String.valueOf(model.getSeats()));
+                holder.numberOfSeats.setText(String.valueOf(model.getEmptySeats()));
                 holder.position=holder.getAdapterPosition();
                 Tremp tremp=options.getSnapshots().get(position);
                 holder.tremp=tremp;
@@ -59,6 +59,7 @@ public class TrempistTrempsList extends AppCompatActivity {
         Intent intent=new Intent(TrempistTrempsList.this, TrempistDashboard.class);
         startActivity(intent);
     }
+
 
 
     class TrempistViewHolder extends RecyclerView.ViewHolder {
@@ -82,7 +83,7 @@ public class TrempistTrempsList extends AppCompatActivity {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    DataBase.trempistLeaveTremp(id);
                 }
             });
         }

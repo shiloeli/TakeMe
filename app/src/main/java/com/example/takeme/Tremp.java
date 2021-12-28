@@ -5,8 +5,15 @@ import java.util.ArrayList;
 public class Tremp {
     String src, dest, hour, date;
     int seats;
+
+
+    int emptySeats;
     String driverId;
     ArrayList<String> passengersIds;
+
+    public int getEmptySeats() {
+        return emptySeats;
+    }
 
     public Tremp(){}
 
@@ -18,6 +25,7 @@ public class Tremp {
         this.hour = hour;
         this.date = date;
         this.seats = seats;
+        this.emptySeats = seats;
     }
     public ArrayList<String> getPassengersIds(){return this.passengersIds;}
     public String getSrc() {

@@ -95,13 +95,31 @@ public class DataBase {
             }
         });
     }
+    public static void trempistLeaveTremp (String trempId)
+    {
+        documentReference = fStore.collection("tremps").document(trempId);
+
+        documentReference.update("passengersIds",FieldValue.arrayRemove(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                documentReference.update("emptySeats", FieldValue.increment(+1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "onSuccess: Trempsist " + getID() + "left tremp " +trempId + "Successfully ");
+                    }
+                });
+
+            }
+        });
+
+    }
     public static void trempistJoinsTremp (String trempId)
     {
         documentReference = fStore.collection("tremps").document(trempId);
-        documentReference.update("seats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReference.update("emptySeats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d(TAG, "onSuccess: Tremps seats updated for tremp  " + trempId);
+                Log.d(TAG, "Tremps details updated successfully for user : " + getID() );
             }
         });
         documentReference.update("passengersIds",FieldValue.arrayUnion(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -113,7 +131,7 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
-        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).orderBy("seats");
+        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).whereGreaterThan("emptySeats",0).orderBy("emptySeats");
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
@@ -121,7 +139,7 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
-        Query query = fStore.collection(collection).whereGreaterThan("seats",0);
+        Query query = fStore.collection(collection).whereGreaterThan("emptySeats",0);
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
@@ -171,8 +189,8 @@ public class DataBase {
 
     public static Query search(String a, String b) {
         Query query = fStore.collection("tremps").whereEqualTo("src", a)
-                .whereEqualTo("dest", b)
-                .orderBy("seats");
+                .whereEqualTo("dest", b).whereGreaterThan("emptySeats",0)
+                .orderBy("emptySeats");
         return query;
     }
     public static void welcomeUser(TextView view){
