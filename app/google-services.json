@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "437836554431",
+    "project_id": "take-me-e32bc",
+    "storage_bucket": "take-me-e32bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437836554431:android:eca88e69a3245743a1e60a",
+        "android_client_info": {
+          "package_name": "com.example.takeme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437836554431-029u5dd2vn6kerkr09fdaavo65obcnuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRyXrscwdrPrbYiUiwIndOaE2RtdXJQqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437836554431-029u5dd2vn6kerkr09fdaavo65obcnuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

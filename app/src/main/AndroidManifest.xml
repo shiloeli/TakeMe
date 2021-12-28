@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.takeme">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TakeMe">
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistTrempsList$DriverViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".TrempistTrempsList"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".MessageToDriver"
+            android:exported="false" />
+        <activity
+            android:name=".TrempList"
+            android:exported="false" />
+        <activity
+            android:name=".DriverInformation"
+            android:exported="false" />
+        <activity
+            android:name=".NewTremp"
+            android:exported="false" />
+        <activity
+            android:name=".DriverDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".DriverOrTrempist"
+            android:exported="false" />
+        <activity
+            android:name=".Board"
+            android:exported="false" />
+        <activity
+            android:name=".UserRegister"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
