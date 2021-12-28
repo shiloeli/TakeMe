@@ -190,6 +190,24 @@ public class DataBase {
             }
         });
     }
+    public static void profile(TextView viewName,TextView viewEmail,TextView viewGender,TextView viewID,TextView viewPhone){
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                viewName.setText("שם:"+user.name+" "+user.lastName);
+                viewEmail.setText("אימייל:"+user.email);
+                if(user.gender)
+                    viewGender.setText("זכר");
+                else viewGender.setText("נקבה");
+                viewID.setText("תעודת זהות:"+user.id);
+                viewPhone.setText("טלפון:"+user.phone);
+
+            }
+        });
+    }
+
 
     public static void setNotification(NotificationCompat.Builder builder, NotificationManagerCompat managerCompat, Tremp tremp){
         documentReference = fStore.collection("users").document(tremp.driverId);
