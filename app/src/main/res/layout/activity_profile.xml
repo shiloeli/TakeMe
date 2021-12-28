@@ -99,9 +99,14 @@
 
     <Button
         android:id="@+id/edit_profile"
-        android:layout_width="177dp"
-        android:layout_height="37dp"
-        android:text="Edit Profile"
+        android:layout_width="153dp"
+        android:layout_height="25dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-thin"
+        android:text="Edit Photo"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
