@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DriverOrTrempist extends AppCompatActivity {
     TextView welcome;
@@ -43,14 +48,27 @@ public class DriverOrTrempist extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
         switch (item.getItemId()){
             case R.id.nav_home:
                 Intent intent=new Intent(getApplicationContext(), DriverOrTrempist.class);
                 startActivity(intent);
                 return true;
             case R.id.nav_profile:
-                Intent intent2=new Intent(getApplicationContext(), Profile.class);
-                startActivity(intent2);
+                fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.contains("myCar"))
+                        {
+                            startActivity(new Intent(getApplicationContext(), DriverProfile.class));
+                        }
+                        else {
+                            startActivity(new Intent(getApplicationContext(), Profile.class));
+                        }
+
+                    }
+                });
                 return true;
             case R.id.nav_find:
                 Intent intent3=new Intent(getApplicationContext(), Board.class);

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -238,19 +241,20 @@ public class DataBase {
                 }
         });
     }
-    public static void profile(TextView viewName,TextView viewEmail,TextView viewGender,TextView viewID,TextView viewPhone){
+    public static void profile(EditText viewfirstName,EditText viewlastName, TextView viewEmail, TextView viewGender, TextView viewID, EditText viewPhone){
         documentReference = fStore.collection("users").document(getID());
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                viewName.setText("שם:"+user.name+" "+user.lastName);
-                viewEmail.setText("אימייל:"+user.email);
+                viewfirstName.setText(user.name);
+                viewlastName.setText(user.lastName);
+                viewEmail.setText(user.email);
                 if(user.gender)
                     viewGender.setText("זכר");
                 else viewGender.setText("נקבה");
-                viewID.setText("תעודת זהות:"+user.id);
-                viewPhone.setText("טלפון:"+user.phone);
+                viewID.setText(user.id);
+                viewPhone.setText(user.phone);
 
             }
         });
@@ -277,6 +281,49 @@ public class DataBase {
                 managerCompat.notify(2,builder.build());
             }
         });
+    }
+
+    public static void updateProfile(String firstName,String lastName,String phone) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.update("name",firstName);
+        documentReference.update("lastName",lastName);
+        documentReference.update("phone",phone);
+
+
+
+    }
+
+    public static void profileDriver(EditText firstName, EditText lastName, TextView email, TextView gender, TextView id, EditText phone, EditText carColor, EditText carType, EditText carNumber) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver driver = documentSnapshot.toObject(Driver.class);
+                firstName.setText(driver.name);
+                lastName.setText(driver.lastName);
+                email.setText(driver.email);
+                if(driver.gender)
+                    gender.setText("זכר");
+                else gender.setText("נקבה");
+                id.setText(driver.id);
+                phone.setText(driver.phone);
+                carNumber.setText(String.valueOf(driver.myCar.carNumber));
+                carColor.setText(driver.myCar.carColor);
+                carType.setText(driver.myCar.carType);
+
+            }
+        });
+    }
+
+    public static void updateProfileDriver(String stringFisrtName, String stringLastName, String stringPhone, String stringCarNum, String stringCarColor, String stringCarType) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.update("name",stringFisrtName);
+        documentReference.update("lastName",stringLastName);
+        documentReference.update("phone",stringPhone);
+        documentReference.update("carNumber",stringCarNum);
+        documentReference.update("carColor",stringCarColor);
+        documentReference.update("carType",stringCarType);
+
     }
 }
 
