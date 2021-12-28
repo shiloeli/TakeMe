@@ -67,14 +67,6 @@ public class DataBase {
 //    }
 
 
-
-
-
-
-
-
-
-
     public static String getID(){
         return mAuth.getCurrentUser().getUid();
     }
@@ -241,13 +233,9 @@ public class DataBase {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                if(user.gender){
-                    view.setText(" ברוך הבא "+user.name+" ! ");
-                }else {
-                    view.setText(" ברוכה הבאה "+user.name+" ! ");
-                }
+                    view.setText(" שלום "+user.name+" ! ");
 
-            }
+                }
         });
     }
     public static void profile(TextView viewName,TextView viewEmail,TextView viewGender,TextView viewID,TextView viewPhone){
