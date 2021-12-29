@@ -1,29 +1,43 @@
 package com.example.takeme;
 
 import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.net.URI;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -35,6 +49,29 @@ public class DataBase {
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private static DocumentReference documentReference;
+    private static StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private static Context context;
+
+//    public static void uploadImage(Uri image){
+//        StorageReference file = storageReference.child("profile.jpg");
+//        file.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri uri) {
+//                        Picasso.get().load(uri).into()
+//                    }
+//                })
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+////                Toast.makeText(context.getApplicationContext(),"Failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//    }
 
 
     public static String getID(){
@@ -202,15 +239,30 @@ public class DataBase {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                if(user.gender){
-                    view.setText(" ברוך הבא "+user.name+" ! ");
-                }else {
-                    view.setText(" ברוכה הבאה "+user.name+" ! ");
+                    view.setText(" שלום "+user.name+" ! ");
+
                 }
+        });
+    }
+    public static void profile(EditText viewfirstName,EditText viewlastName, TextView viewEmail, TextView viewGender, TextView viewID, EditText viewPhone){
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                viewfirstName.setText(user.name);
+                viewlastName.setText(user.lastName);
+                viewEmail.setText(user.email);
+                if(user.gender)
+                    viewGender.setText("זכר");
+                else viewGender.setText("נקבה");
+                viewID.setText(user.id);
+                viewPhone.setText(user.phone);
 
             }
         });
     }
+
 
     public static void setNotification(NotificationCompat.Builder builder, NotificationManagerCompat managerCompat, Tremp tremp){
         DocumentReference dF;
@@ -233,6 +285,49 @@ public class DataBase {
                 managerCompat.notify(2,builder.build());
             }
         });
+    }
+
+    public static void updateProfile(String firstName,String lastName,String phone) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.update("name",firstName);
+        documentReference.update("lastName",lastName);
+        documentReference.update("phone",phone);
+
+
+
+    }
+
+    public static void profileDriver(EditText firstName, EditText lastName, TextView email, TextView gender, TextView id, EditText phone, EditText carColor, EditText carType, EditText carNumber) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver driver = documentSnapshot.toObject(Driver.class);
+                firstName.setText(driver.name);
+                lastName.setText(driver.lastName);
+                email.setText(driver.email);
+                if(driver.gender)
+                    gender.setText("זכר");
+                else gender.setText("נקבה");
+                id.setText(driver.id);
+                phone.setText(driver.phone);
+                carNumber.setText(String.valueOf(driver.myCar.carNumber));
+                carColor.setText(driver.myCar.carColor);
+                carType.setText(driver.myCar.carType);
+
+            }
+        });
+    }
+
+    public static void updateProfileDriver(String stringFisrtName, String stringLastName, String stringPhone, String stringCarNum, String stringCarColor, String stringCarType) {
+        documentReference = fStore.collection("users").document(getID());
+        documentReference.update("name",stringFisrtName);
+        documentReference.update("lastName",stringLastName);
+        documentReference.update("phone",stringPhone);
+        documentReference.update("carNumber",stringCarNum);
+        documentReference.update("carColor",stringCarColor);
+        documentReference.update("carType",stringCarType);
+
     }
 }
 
