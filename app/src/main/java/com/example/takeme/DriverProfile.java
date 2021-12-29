@@ -24,29 +24,30 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class Profile extends AppCompatActivity {
-    EditText lastName,firstName,phone;
-    TextView gender,email,id;
+public class DriverProfile extends AppCompatActivity {
+    EditText lastName, firstName, phone,carColor,carType,carNumber;
+    TextView gender, email, id;
     ImageView profileImage;
     Button edit;
     private static StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_driver_profile);
         firstName = (EditText) findViewById(R.id.textViewPName);
-        lastName=(EditText) findViewById(R.id.textViewFName);
-        email=(TextView) findViewById(R.id.textViewEmail);
-        id=(TextView) findViewById(R.id.textViewId);
-        phone=(EditText)findViewById(R.id.textViewPhone);
-        gender=(TextView) findViewById(R.id.textViewGender);
-        DataBase.profile(firstName,lastName,email,gender,id,phone);
+        lastName = (EditText) findViewById(R.id.textViewFName);
+        email = (TextView) findViewById(R.id.textViewEmail);
+        id = (TextView) findViewById(R.id.textViewId);
+        phone = (EditText) findViewById(R.id.textViewPhone);
+        gender = (TextView) findViewById(R.id.textViewGender);
+        carColor=(EditText)findViewById(R.id.textViewColor);
+        carType=(EditText)findViewById(R.id.textViewType);
+        carNumber=(EditText)findViewById(R.id.textViewCarNum);
+        DataBase.profileDriver(firstName, lastName, email, gender, id, phone,carColor,carType,carNumber);
         profileImage = findViewById(R.id.profile_image);
         edit = findViewById(R.id.edit_profile);
-        StorageReference profileref = storageReference.child("users/" +DataBase.getID() + "/profile.jpg");
+        StorageReference profileref = storageReference.child("users/" + DataBase.getID() + "/profile.jpg");
         profileref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -57,7 +58,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGallery,1000);
+                startActivityForResult(openGallery, 1000);
             }
         });
     }
@@ -65,8 +66,8 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1000){
-            if(resultCode == Activity.RESULT_OK){
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
                 Uri image = data.getData();
 //                profileImage.setImageURI(image);
                 uploadImage(image);
@@ -74,8 +75,8 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-    public void uploadImage(Uri image){
-        StorageReference file = storageReference.child("users/" +DataBase.getID() + "/profile.jpg");
+    public void uploadImage(Uri image) {
+        StorageReference file = storageReference.child("users/" + DataBase.getID() + "/profile.jpg");
         file.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -97,21 +98,36 @@ public class Profile extends AppCompatActivity {
 
     public void OnClickEditInfo(View view) {
 
-        String stringFisrtName=firstName.getText().toString();
-        String stringLastName=lastName.getText().toString();
-        String stringEmail=email.getText().toString();
-        String stringPhone=phone.getText().toString();
-        String stringID=id.getText().toString();
-        int phoneLen=stringPhone.length();
-        if(phoneLen!=10)
-        {
+        String stringFisrtName = firstName.getText().toString();
+        String stringLastName = lastName.getText().toString();
+        String stringPhone = phone.getText().toString();
+        String stringCarType= carType.getText().toString();
+        String stringCarColor=carColor.getText().toString();
+        String stringCarNum=carNumber.getText().toString();
+        int phoneLen = stringPhone.length();
+        if (phoneLen != 10) {
             phone.setError("מספר טלפון לא חוקי");
             return;
         }
-        int idLen=stringID.length();
-        if(idLen!=9)
+        if(TextUtils.isEmpty(stringCarType))
         {
-            id.setError("מספר תעודת זהות לא תקין");
+            carType.setError("נדרש סוג רכב");
+            return;
+        }
+        if(TextUtils.isEmpty(stringCarNum))
+        {
+            carNumber.setError("נדרש מספר רכב");
+            return;
+        }
+        int carNumLen=stringCarNum.length();
+        if(carNumLen!=7)
+        {
+            carNumber.setError("מספר רכב לא תקין");
+            return;
+        }
+        if(TextUtils.isEmpty(stringCarColor))
+        {
+            carColor.setError("נדרש צבע של הרכב");
             return;
         }
         if(TextUtils.isEmpty(stringFisrtName))
@@ -124,7 +140,8 @@ public class Profile extends AppCompatActivity {
             lastName.setError("נדרש שם משפחה");
             return;
         }
-        DataBase.updateProfile(stringFisrtName,stringLastName,stringPhone);
-        Toast.makeText(this,"Data has been update",Toast.LENGTH_LONG).show();
+
+        DataBase.updateProfileDriver(stringFisrtName, stringLastName, stringPhone,stringCarNum,stringCarColor,stringCarType);
+        Toast.makeText(this, "Data has been update", Toast.LENGTH_LONG).show();
     }
 }

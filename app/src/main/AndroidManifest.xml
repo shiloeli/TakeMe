@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TakeMe.ActionBar.Transparent">
         <activity
+            android:name=".DriverProfile"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
