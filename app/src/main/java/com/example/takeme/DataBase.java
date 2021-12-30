@@ -325,6 +325,10 @@ public class DataBase {
         documentReference.update("carType",stringCarType);
 
     }
+
+//    public static FirestoreRecyclerOptions<User> trempistsList(String trempId) {
+//        Query query = fStore.collection("tremps").document(trempId)
+//    }
 }
 
 
