@@ -39,6 +39,10 @@ import com.squareup.picasso.Picasso;
 
 import java.net.URI;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataBase {
 
     public static final String TAG = "TAG";
@@ -80,10 +84,11 @@ public class DataBase {
         return mAuth.signInWithEmailAndPassword(email,password);
     }
     public static void createUser(String collection, String txtName,String txtLastName,String txtEmail,String txtPhone,String txtID, boolean male){
+        DocumentReference dF;
         String ID = getID();
-        documentReference = fStore.collection(collection).document(ID);
+        dF = fStore.collection(collection).document(ID);
         User user = new User(txtName, txtLastName, txtEmail, txtPhone, txtID, male,false);
-        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dF.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Log.d(TAG, "onSuccess: user profile is create for" + ID);
@@ -91,29 +96,13 @@ public class DataBase {
         });
     }
 
-    public static void isDriver(Intent Driver , Intent Trempist) {
-//        fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if (documentSnapshot.contains("myCar"))
-//                {
-//                    Log.d(TAG, "Its a Driver");
-//                    startActivity(D);
-//                }
-//                else {
-//                    Log.d(TAG, "Its a Trempist");
-//                    startActivity(new Intent(getApplicationContext(), TrempistDashboard.class).putExtra("UID",DataBase.getID()));
-//                }
-//
-//            }
-//        });
-    }
     public static void createTremp(String collection, String txtSrcCity,String txtDestCity,String txtHour,String txtDate,int txtSeatsNum){
+        DocumentReference dF;
         String userDbId = getID();
-        documentReference = fStore.collection(collection).document();
+        dF = fStore.collection(collection).document();
 
         Tremp tremp = new Tremp(txtSrcCity, txtDestCity, txtHour, txtDate, txtSeatsNum,userDbId);
-        documentReference.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dF.set(tremp).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Log.d(TAG, "onSuccess: Tremp is create for" + userDbId);
@@ -122,10 +111,11 @@ public class DataBase {
         });
     }
     public static void createDriver(String collection, String name,String lastName,String email,String phone,String id,int StringNumberCar,String StringTypeCar,String StringColor,boolean male,boolean isDriver){
+        DocumentReference dF;
         String ID = getID();
-        documentReference = fStore.collection(collection).document(ID);
+        dF = fStore.collection(collection).document(ID);
         Driver userDriver = new Driver(name, lastName, email, phone, id, male ,StringNumberCar,StringTypeCar,StringColor,true);
-        documentReference.set(userDriver).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dF.set(userDriver).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Log.d(TAG, "onSuccess: user profile is create for" + ID);
@@ -134,12 +124,12 @@ public class DataBase {
     }
     public static void trempistLeaveTremp (String trempId)
     {
-        documentReference = fStore.collection("tremps").document(trempId);
-
-        documentReference.update("passengersIds",FieldValue.arrayRemove(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
+        DocumentReference dF;
+        dF = fStore.collection("tremps").document(trempId);
+        dF.update("passengersIds",FieldValue.arrayRemove(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                documentReference.update("emptySeats", FieldValue.increment(+1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                dF.update("emptySeats", FieldValue.increment(+1)).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "onSuccess: Trempsist " + getID() + "left tremp " +trempId + "Successfully ");
@@ -152,21 +142,38 @@ public class DataBase {
     }
     public static void trempistJoinsTremp (String trempId)
     {
-        documentReference = fStore.collection("tremps").document(trempId);
-        documentReference.update("emptySeats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+        DocumentReference dF;
+        dF = fStore.collection("tremps").document(trempId);
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(Void unused) {
-                Log.d(TAG, "Tremps details updated successfully for user : " + getID() );
-            }
-        });
-        documentReference.update("passengersIds",FieldValue.arrayUnion(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d(TAG, "onSuccess: Trempsist " + getID() + "joined tremp " +trempId + "Successfully ");
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ArrayList<String> passengers =(ArrayList<String>)documentSnapshot.get("passengersIds");
+                Log.d(TAG, "test array of trempeists : " + passengers.toString());
+                if (passengers.contains(getID())) {
+                    Log.d(TAG, "User " + getID() + " is already in the tremp" + passengers.contains(getID()));
+                    return;
+                }
+                else {
+                    dF.update("emptySeats", FieldValue.increment(-1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.d(TAG, "Tremps details updated successfully for user : " + getID() );
+                            dF.update("passengersIds",FieldValue.arrayUnion(getID())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d(TAG, "onSuccess: Trempsist " + getID() + "joined tremp " +trempId + "Successfully ");
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
 
-    }
+
+
+            }
+
     public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
         Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).whereGreaterThan("emptySeats",0).orderBy("emptySeats");
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -176,22 +183,16 @@ public class DataBase {
 
     }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
-        Query query = fStore.collection(collection).whereGreaterThan("emptySeats",0);
+        List l = new ArrayList();
+        l.add(getID());
+        Query query = fStore.collection(collection).whereGreaterThan("emptySeats",0).orderBy("emptySeats");
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
                 .setQuery(query, Tremp.class)
                 .build();
         return options;
 
     }
-    public static FirestoreRecyclerOptions<Tremp> BoardSerchByCities(String dest,String src)
-    {
-        Query query = fStore.collection("tremps").whereGreaterThan("seats",0).whereEqualTo("dest",dest).whereEqualTo("src",src);
-        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-                .setQuery(query, Tremp.class)
-                .build();
-        return options;
 
-    }
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
         Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -208,8 +209,9 @@ public class DataBase {
     }
 
     public static void setNumberDriver(String id, TextView view) {
-        documentReference = fStore.collection("users").document(id);
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dF;
+        dF = fStore.collection("users").document(id);
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Driver user = documentSnapshot.toObject(Driver.class);
@@ -231,8 +233,9 @@ public class DataBase {
         return query;
     }
     public static void welcomeUser(TextView view){
-        documentReference = fStore.collection("users").document(getID());
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dF;
+        dF = fStore.collection("users").document(getID());
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
@@ -262,8 +265,9 @@ public class DataBase {
 
 
     public static void setNotification(NotificationCompat.Builder builder, NotificationManagerCompat managerCompat, Tremp tremp){
-        documentReference = fStore.collection("users").document(tremp.driverId);
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dF;
+        dF = fStore.collection("users").document(tremp.driverId);
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Driver user = documentSnapshot.toObject(Driver.class);
