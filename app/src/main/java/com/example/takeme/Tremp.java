@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 public class Tremp {
     String src, dest, hour, date;
-    int seats;
-
-
-    int emptySeats;
+    int seats,emptySeats;
     String driverId;
     ArrayList<String> passengersIds;
 
@@ -27,6 +24,11 @@ public class Tremp {
         this.seats = seats;
         this.emptySeats = seats;
     }
+    public boolean containPassenger(String uid)
+    {
+        return passengersIds.contains(uid);
+    }
+
     public ArrayList<String> getPassengersIds(){return this.passengersIds;}
     public String getSrc() {
         return src;

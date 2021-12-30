@@ -1,6 +1,7 @@
 package com.example.takeme;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,19 +11,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class TrempList extends AppCompatActivity {
-    private RecyclerView fStoreTDriver;
-    private FirestoreRecyclerAdapter adapter;
+    private RecyclerView fStoreTDriver,trempistsInfo;
+    private FirestoreRecyclerAdapter adapter,adapter2;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    Button close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tremp_list);
+        trempistsInfo=findViewById(R.id.recycleTrempists);
+//        FirestoreRecyclerOptions<User> trempistsList=DataBase.trempistsList();
 
         fStoreTDriver = findViewById(R.id.recycleDriver);
         FirestoreRecyclerOptions<Tremp> options = DataBase.trempList("tremps");
@@ -54,11 +61,36 @@ public class TrempList extends AppCompatActivity {
         fStoreTDriver.setAdapter(adapter);
 
     }
+    class trempistsInfoViewHolder extends RecyclerView.ViewHolder
+    {
+        private TextView name;
+        private TextView phone;
+
+        public trempistsInfoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.textfullname);
+            phone = itemView.findViewById(R.id.textphone);
+        }
+    }
+    public void creatNewContactDialog()
+    {
+        dialogBuilder=new AlertDialog.Builder(this);
+        final View contactPopupView=getLayoutInflater().inflate(R.layout.activity_pop_up_trempists_info,null);
+        dialogBuilder.setView(contactPopupView);
+        dialog=dialogBuilder.create();
+        dialog.show();
+        close=(Button)contactPopupView.findViewById(R.id.buttonClose);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
     public void onClickReturn(View view) {
         startActivity(new Intent(getApplicationContext(), DriverDashboard.class));
     }
-
-
 
     class DriverViewHolder1 extends RecyclerView.ViewHolder {
         private TextView destCity;
@@ -67,6 +99,7 @@ public class TrempList extends AppCompatActivity {
         private TextView emptySeats;
         private TextView numberOfSeats;
         private TextView deleteTremp;
+        private TextView viewTrempists;
         int position;
         Tremp tremp;
         String id;
@@ -86,7 +119,16 @@ public class TrempList extends AppCompatActivity {
                     
                 }
             });
+            viewTrempists = itemView.findViewById(R.id.buttonTheTrempists);
+            viewTrempists.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    creatNewContactDialog();
+                }
+            });
         }
+
+
     }
 
     @Override
