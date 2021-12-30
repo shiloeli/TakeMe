@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -74,6 +75,9 @@ public class DriverOrTrempist extends AppCompatActivity {
                 Intent intent3=new Intent(getApplicationContext(), Board.class);
                 startActivity(intent3);
             case R.id.nav_logout:
+                DataBase.logout();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
 
         }
         return super.onOptionsItemSelected(item);
