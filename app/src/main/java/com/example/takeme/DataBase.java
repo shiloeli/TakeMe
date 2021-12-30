@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,27 +52,6 @@ public class DataBase {
     private static DocumentReference documentReference;
     private static StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private static Context context;
-
-//    public static void uploadImage(Uri image){
-//        StorageReference file = storageReference.child("profile.jpg");
-//        file.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-//                        Picasso.get().load(uri).into()
-//                    }
-//                })
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-////                Toast.makeText(context.getApplicationContext(),"Failed", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//    }
 
 
     public static String getID(){
@@ -330,9 +310,9 @@ public class DataBase {
 
     }
 
-//    public static FirestoreRecyclerOptions<User> trempistsList(String trempId) {
-//        Query query = fStore.collection("tremps").document(trempId)
-//    }
+    public static void logout(){
+        mAuth.getInstance().signOut();
+    }
 }
 
 
