@@ -116,7 +116,7 @@ public class TrempList extends AppCompatActivity {
             deleteTremp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    
+                    DataBase.deleteTremp(id);
                 }
             });
             viewTrempists = itemView.findViewById(R.id.buttonTheTrempists);

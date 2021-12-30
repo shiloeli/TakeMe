@@ -86,11 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onClickReg(View view) {
-        Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
+
+        Intent intenet = new Intent(MainActivity.this, UserRegister.class);
         startActivity(intenet);
     }
     public void onClickForgot(View view) {
-        Intent intenet = new Intent(MainActivity.this, ForgotPassword.class).putExtra("UID",DataBase.getID());
+        Intent intenet = new Intent(MainActivity.this, ForgotPassword.class);
         startActivity(intenet);
     }
 
