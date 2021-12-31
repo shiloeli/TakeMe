@@ -12,49 +12,90 @@
 
 
     <TextView
-        android:id="@+id/textViewId"
-        android:layout_width="271dp"
+        android:id="@+id/textViewEmail"
+        android:layout_width="270dp"
         android:layout_height="34dp"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintVertical_bias="0.728" />
 
-    <EditText
-        android:id="@+id/textViewFName"
-        android:layout_width="273dp"
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="47dp"
         android:layout_height="34dp"
-        android:textAlignment="textEnd"
+        android:text="מייל:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.728" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="92dp"
+        android:layout_height="34dp"
+        android:text="שם פרטי:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453" />
 
     <EditText
         android:id="@+id/textViewPName"
-        android:layout_width="275dp"
+        android:layout_width="250dp"
         android:layout_height="34dp"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427"
+        app:layout_constraintVertical_bias="0.453"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/textViewFName"
+        android:layout_width="250dp"
+        android:layout_height="34dp"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
+        android:text="שם משפחה:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
 
     <EditText
         android:id="@+id/textViewPhone"
@@ -68,7 +109,7 @@
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612"
+        app:layout_constraintVertical_bias="0.638"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -83,37 +124,35 @@
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
+        app:layout_constraintVertical_bias="0.638" />
 
     <TextView
-        android:id="@+id/textViewGender"
-        android:layout_width="174dp"
-        android:layout_height="34dp"
+        android:id="@+id/textViewId"
+        android:layout_width="112dp"
+        android:layout_height="35dp"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.742"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintVertical_bias="0.816" />
 
     <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="270dp"
+        android:id="@+id/textView10"
+        android:layout_width="117dp"
         android:layout_height="34dp"
-        android:textAlignment="textEnd"
+        android:text="תעודת זהות:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.814" />
 
     <ImageView
         android:id="@+id/profile_image"
@@ -135,7 +174,7 @@
         android:fontFamily="sans-serif-thin"
         android:text="ערוך תמונה"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,84 +193,14 @@
         android:onClick="OnClickEditInfo"
         android:text="ערוך פרופיל"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957"
-        tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="116dp"
-        android:layout_height="34dp"
-        android:text="שם משפחה:"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="92dp"
-        android:layout_height="34dp"
-        android:text="שם פרטי:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="47dp"
-        android:layout_height="34dp"
-        android:text="מייל:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="43dp"
-        android:layout_height="34dp"
-        android:text="מין:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.959"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="117dp"
-        android:layout_height="34dp"
-        android:text="תעודת זהות:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789" />
+        app:layout_constraintVertical_bias="0.924" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

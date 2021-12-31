@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,7 +46,6 @@ public class Profile extends AppCompatActivity {
         email=(TextView) findViewById(R.id.textViewEmail);
         id=(TextView) findViewById(R.id.textViewId);
         phone=(EditText)findViewById(R.id.textViewPhone);
-        gender=(TextView) findViewById(R.id.textViewGender);
         DataBase.profile(firstName,lastName,email,gender,id,phone);
         profileImage = findViewById(R.id.profile_image);
         edit = findViewById(R.id.edit_profile);
@@ -126,5 +129,48 @@ public class Profile extends AppCompatActivity {
         }
         DataBase.updateProfile(stringFisrtName,stringLastName,stringPhone);
         Toast.makeText(this,"Data has been update",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                Intent intent=new Intent(getApplicationContext(), DriverOrTrempist.class);
+                startActivity(intent);
+                return true;
+            case R.id.nav_profile:
+                fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.contains("myCar"))
+                        {
+                            startActivity(new Intent(getApplicationContext(), DriverProfile.class));
+                        }
+                        else {
+                            startActivity(new Intent(getApplicationContext(), Profile.class));
+                        }
+
+                    }
+                });
+                return true;
+            case R.id.nav_find:
+                Intent intent3=new Intent(getApplicationContext(), Board.class);
+                startActivity(intent3);
+            case R.id.nav_logout:
+                DataBase.logout();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

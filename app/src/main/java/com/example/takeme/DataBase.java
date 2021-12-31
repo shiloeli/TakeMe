@@ -286,9 +286,6 @@ public class DataBase {
                 firstName.setText(driver.name);
                 lastName.setText(driver.lastName);
                 email.setText(driver.email);
-                if(driver.gender)
-                    gender.setText("זכר");
-                else gender.setText("נקבה");
                 id.setText(driver.id);
                 phone.setText(driver.phone);
                 carNumber.setText(String.valueOf(driver.myCar.carNumber));
