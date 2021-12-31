@@ -197,23 +197,14 @@ public class DataBase {
                 .build();
         return options;
     }
-//    public static FirestoreRecyclerOptions<User> trempistDataList(String trempId){
-//        DocumentReference dF;
-//        final FirestoreRecyclerOptions<User>[] options = new FirestoreRecyclerOptions[0];
-//        dF = fStore.collection("tremps").document(trempId);
-//       dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                                          @Override
-//                                          public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                              ArrayList<String> passengers = (ArrayList<String>) documentSnapshot.get("passengersIds");
-//                                              Query query = fStore.collection("users").whereIn("id",passengers);
-//                                               options[0] = new FirestoreRecyclerOptions.Builder<User>()
-//                                                      .setQuery(query, User.class)
-//                                                      .build();
-//                                          }
-//                                      });
-//        return options[0];
-//
-//    }
+    public static FirestoreRecyclerOptions<User> trempistDataList(ArrayList<String> passengers){
+
+                                              Query query = fStore.collection("users").whereIn("id",passengers);
+                                               FirestoreRecyclerOptions<User> option = new FirestoreRecyclerOptions.Builder<User>()
+                                                      .setQuery(query, User.class)
+                                                      .build();
+                                               return option;
+                                          }
     public static void setNumberDriver(String id, TextView view) {
         DocumentReference dF;
         dF = fStore.collection("users").document(id);

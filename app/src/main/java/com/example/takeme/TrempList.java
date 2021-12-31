@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,21 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
 
 public class TrempList extends AppCompatActivity {
     private RecyclerView fStoreTDriver,trempistsInfo;
     private FirestoreRecyclerAdapter adapter,adapter2;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    public static final String TAG = "TAG";
+    private static FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     Button close;
 
     @Override
@@ -116,7 +126,16 @@ public class TrempList extends AppCompatActivity {
             deleteTremp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DataBase.deleteTremp(id);
+                    DocumentReference dF;
+                    dF = fStore.collection("tremps").document(id);
+                    dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            ArrayList<String> passengers= (ArrayList<String>) documentSnapshot.get("passengersIds");
+                            Log.d(TAG, "This tremp contains the following users: " + passengers.toString() );
+                            DataBase.trempistDataList(passengers);
+                        }
+                    });
                 }
             });
             viewTrempists = itemView.findViewById(R.id.buttonTheTrempists);
