@@ -58,8 +58,6 @@ public class DriverInformation extends AppCompatActivity {
                     colortxt.setError("נדרש צבע של הרכב");
                     return;
                 }
-
-
                 String name = getIntent().getStringExtra("name");
                 String lastName = getIntent().getStringExtra("lastName");
                 String email = getIntent().getStringExtra("email");

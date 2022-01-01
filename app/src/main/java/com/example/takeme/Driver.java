@@ -3,11 +3,15 @@ package com.example.takeme;
 import java.util.ArrayList;
 
 public class Driver extends User {
+    //Fields
    Car myCar;
    int rank;
    ArrayList<String> trempsIds;
 
+   //Empty constructor
    public Driver(){}
+
+    //Constructor
     public Driver(String name, String lastName, String email, String phone, String id, Boolean gender, int carNumber, String carType, String carColor,boolean isDriver)
     {
         super(name, lastName, email, phone, id, gender,isDriver);
@@ -19,10 +23,7 @@ public class Driver extends User {
     public Car getMyCar() {
         return myCar;
     }
-
     public int getRank(){
         return rank;
     }
-
-
 }

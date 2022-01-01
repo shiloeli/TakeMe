@@ -225,6 +225,7 @@ public class Board extends AppCompatActivity  {
         }
 
         search.setOnClickListener(new View.OnClickListener() {
+            //On click function for the search button.
             @Override
             public void onClick(View view) {
                 Query query = DataBase.search(srcSearch.getText().toString(), destSearch.getText().toString());
