@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -71,7 +68,7 @@ public class DriverInformation extends AppCompatActivity {
                 String id = getIntent().getStringExtra("id");
                 Boolean male = getIntent().getBooleanExtra("male", true);
                 DataBase.createDriver("users",name, lastName, email, phone, id ,StringNumberCar,StringTypeCar,StringColor, male,true);
-                startActivity(new Intent(DriverInformation.this,MainActivity.class));
+                startActivity(new Intent(DriverInformation.this, Login.class));
             }
         });
     }
@@ -112,7 +109,7 @@ public class DriverInformation extends AppCompatActivity {
                 startActivity(intent3);
             case R.id.nav_logout:
                 DataBase.logout();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
 
         }

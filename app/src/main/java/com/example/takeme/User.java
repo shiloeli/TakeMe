@@ -5,7 +5,8 @@ import android.widget.EditText;
 
 public class User {
     String name, lastName, email, phone, id ;
-    Boolean gender, isDriver;
+    Boolean gender,
+            isDriver;
 
     public String getGender()
     {

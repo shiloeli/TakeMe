@@ -179,9 +179,6 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -194,18 +191,13 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Board extends AppCompatActivity  {
     private RecyclerView fireStoreTremps;
     private FirestoreRecyclerAdapter adapter;
-
     private EditText srcSearch,destSearch;
     private Button search;
 
@@ -407,7 +399,7 @@ public class Board extends AppCompatActivity  {
                 startActivity(intent3);
             case R.id.nav_logout:
                 DataBase.logout();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
 
         }

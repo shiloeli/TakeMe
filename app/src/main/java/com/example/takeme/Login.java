@@ -20,9 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.concurrent.ExecutionException;
-
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     EditText txtPassword, txtName;
     TextView txtForgotPass;
     Button buttLog;
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                         }else{
-                            Toast.makeText(MainActivity.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "שגיאה!"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -86,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onClickReg(View view) {
-        Intent intenet = new Intent(MainActivity.this, UserRegister.class).putExtra("UID",DataBase.getID());
+
+        Intent intenet = new Intent(Login.this, UserRegister.class);
         startActivity(intenet);
     }
     public void onClickForgot(View view) {
-        Intent intenet = new Intent(MainActivity.this, ForgotPassword.class).putExtra("UID",DataBase.getID());
+        Intent intenet = new Intent(Login.this, ForgotPassword.class);
         startActivity(intenet);
     }
 

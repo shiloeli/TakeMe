@@ -7,7 +7,6 @@ import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.TimePickerDialog;
@@ -204,7 +203,7 @@ public class NewTremp extends AppCompatActivity {
                 startActivity(intent3);
             case R.id.nav_logout:
                 DataBase.logout();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
 
         }

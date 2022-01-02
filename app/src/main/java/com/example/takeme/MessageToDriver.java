@@ -102,7 +102,7 @@ public class MessageToDriver extends AppCompatActivity {
                 startActivity(intent3);
             case R.id.nav_logout:
                 DataBase.logout();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
 
         }

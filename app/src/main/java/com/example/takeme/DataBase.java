@@ -102,6 +102,16 @@ public class DataBase {
             }
         });
     }
+    public static void deleteTremp (String trempId)
+    {
+        fStore.collection("tremps").document(trempId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused)
+            {
+                Log.d(TAG, "Tremp delete successfully for driver " +getID()+" And trempId: "+ trempId);
+            }
+        });
+    }
     public static void trempistLeaveTremp (String trempId)
     {
         DocumentReference dF;
@@ -187,7 +197,14 @@ public class DataBase {
                 .build();
         return options;
     }
+    public static FirestoreRecyclerOptions<User> trempistDataList(ArrayList<String> passengers){
 
+                                              Query query = fStore.collection("users").whereIn("id",passengers);
+                                               FirestoreRecyclerOptions<User> option = new FirestoreRecyclerOptions.Builder<User>()
+                                                      .setQuery(query, User.class)
+                                                      .build();
+                                               return option;
+                                          }
     public static void setNumberDriver(String id, TextView view) {
         DocumentReference dF;
         dF = fStore.collection("users").document(id);
@@ -225,8 +242,9 @@ public class DataBase {
         });
     }
     public static void profile(EditText viewfirstName,EditText viewlastName, TextView viewEmail, TextView viewGender, TextView viewID, EditText viewPhone){
-        documentReference = fStore.collection("users").document(getID());
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dF;
+        dF = fStore.collection("users").document(getID());
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
@@ -251,8 +269,8 @@ public class DataBase {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Driver user = documentSnapshot.toObject(Driver.class);
-                String message = user.myCar.carColor+" בצבע "+user.myCar.carType+" רכב מסוג ,"+tremp.dest+" ל "+tremp.src+" מ "+user.name+" הצטרפת לטרמפ של";
-                builder.setContentTitle("הצטרפת לטרמפ");
+                builder.setContentTitle("הצטרפת לטרמפ של");
+                String message = user.myCar.carColor+" בצבע "+user.myCar.carType+" רכב מסוג ,"+tremp.dest+" ל "+tremp.src+" מ "+user.name;
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
 //                Bitmap bitmapIcon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.logo2);
 //                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -268,18 +286,20 @@ public class DataBase {
     }
 
     public static void updateProfile(String firstName,String lastName,String phone) {
-        documentReference = fStore.collection("users").document(getID());
-        documentReference.update("name",firstName);
-        documentReference.update("lastName",lastName);
-        documentReference.update("phone",phone);
+        DocumentReference dF;
+        dF = fStore.collection("users").document(getID());
+        dF.update("name",firstName);
+        dF.update("lastName",lastName);
+        dF.update("phone",phone);
 
 
 
     }
 
     public static void profileDriver(EditText firstName, EditText lastName, TextView email, TextView gender, TextView id, EditText phone, EditText carColor, EditText carType, EditText carNumber) {
-        documentReference = fStore.collection("users").document(getID());
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dF;
+        dF = fStore.collection("users").document(getID());
+        dF.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Driver driver = documentSnapshot.toObject(Driver.class);
@@ -297,13 +317,14 @@ public class DataBase {
     }
 
     public static void updateProfileDriver(String stringFisrtName, String stringLastName, String stringPhone, String stringCarNum, String stringCarColor, String stringCarType) {
-        documentReference = fStore.collection("users").document(getID());
-        documentReference.update("name",stringFisrtName);
-        documentReference.update("lastName",stringLastName);
-        documentReference.update("phone",stringPhone);
-        documentReference.update("carNumber",stringCarNum);
-        documentReference.update("carColor",stringCarColor);
-        documentReference.update("carType",stringCarType);
+        DocumentReference dF;
+        dF = fStore.collection("users").document(getID());
+        dF.update("name",stringFisrtName);
+        dF.update("lastName",stringLastName);
+        dF.update("phone",stringPhone);
+        dF.update("carNumber",stringCarNum);
+        dF.update("carColor",stringCarColor);
+        dF.update("carType",stringCarType);
 
     }
 
