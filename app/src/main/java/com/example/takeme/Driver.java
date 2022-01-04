@@ -3,18 +3,27 @@ package com.example.takeme;
 import java.util.ArrayList;
 
 public class Driver extends User {
-   Car myCar;
-   ArrayList<String> trempsIds;
+    //Fields
+    Car myCar;
+    ArrayList<String> trempsIds;
 
-   public Driver(){}
-    public Driver(String name, String lastName, String email, String phone, String id, Boolean gender, int carNumber, String carType, String carColor,boolean isDriver)
-    {
-        super(name, lastName, email, phone, id, gender,isDriver);
-        this.myCar=new Car(carColor, carType,carNumber);
-        this.trempsIds= new ArrayList<String>();
+    //Empty constructor
+    public Driver() {
     }
-    public ArrayList<String> getTrempsIds(){return this.trempsIds;}
+
+    //Constructor
+    public Driver(String name, String lastName, String email, String phone, String id, Boolean gender, int carNumber, String carType, String carColor, boolean isDriver) {
+        super(name, lastName, email, phone, id, gender, isDriver);
+        this.myCar = new Car(carColor, carType, carNumber);
+        this.trempsIds = new ArrayList<String>();
+    }
+
+    public ArrayList<String> getTrempsIds() {
+        return this.trempsIds;
+    }
+
     public Car getMyCar() {
         return myCar;
     }
 }
+

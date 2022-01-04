@@ -60,12 +60,15 @@ public class Login extends AppCompatActivity {
                         if(task.isSuccessful()){
                             fStore.collection("users").document(DataBase.getID()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
+                                //Checks if the user is also a Driver.
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    //Driver
                                     if (documentSnapshot.contains("myCar"))
                                     {
                                         Log.d(TAG, "Its a Driver");
                                         startActivity(new Intent(getApplicationContext(), DriverOrTrempist.class));
                                     }
+                                    //Only user
                                     else {
                                         Log.d(TAG, "Its a Trempist");
                                         startActivity(new Intent(getApplicationContext(), TrempistDashboard.class));

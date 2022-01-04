@@ -1,33 +1,18 @@
 package com.example.takeme;
 
-import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
-
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -35,12 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,6 +92,8 @@ public class DataBase {
             }
         });
     }
+
+    //This function remove trempist from a tremp.
     public static void trempistLeaveTremp (String trempId)
     {
         DocumentReference dF;
@@ -130,6 +112,7 @@ public class DataBase {
         });
 
     }
+    //This function add a trempist to a tremp.
     public static void trempistJoinsTremp (String trempId)
     {
         DocumentReference dF;
@@ -164,14 +147,6 @@ public class DataBase {
 
             }
 
-    public static FirestoreRecyclerOptions<Tremp> Search(String Dest , String src){
-        Query query = fStore.collection("tremps").whereEqualTo("src",src).whereEqualTo("dest",Dest).whereGreaterThan("emptySeats",0).orderBy("emptySeats");
-        FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
-                .setQuery(query, Tremp.class)
-                .build();
-        return options;
-
-    }
     public static FirestoreRecyclerOptions<Tremp> Board(String collection){
         List l = new ArrayList();
         l.add(getID());
@@ -180,9 +155,9 @@ public class DataBase {
                 .setQuery(query, Tremp.class)
                 .build();
         return options;
-
     }
 
+    //Shows the tremps that related to current driver id
     public static FirestoreRecyclerOptions<Tremp> trempList(String collection){
         Query query = fStore.collection(collection).whereEqualTo("driverId",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -190,6 +165,7 @@ public class DataBase {
                 .build();
         return options;
     }
+
     public static FirestoreRecyclerOptions<Tremp> trempistTremps(String collection){
         Query query = fStore.collection(collection).whereArrayContains("passengersIds",getID());
         FirestoreRecyclerOptions<Tremp> options = new FirestoreRecyclerOptions.Builder<Tremp>()
@@ -197,6 +173,7 @@ public class DataBase {
                 .build();
         return options;
     }
+
     public static FirestoreRecyclerOptions<User> trempistDataList(ArrayList<String> passengers){
 
                                               Query query = fStore.collection("users").whereIn("id",passengers);
@@ -205,6 +182,7 @@ public class DataBase {
                                                       .build();
                                                return option;
                                           }
+
     public static void setNumberDriver(String id, TextView view) {
         DocumentReference dF;
         dF = fStore.collection("users").document(id);
@@ -217,12 +195,11 @@ public class DataBase {
         });
     }
 
-
-
     public static Task<Void> forgotPassword(String email) {
        return mAuth.sendPasswordResetEmail(email);
     }
 
+    //This function builds the Quary for the search tremp by cities feature.
     public static Query search(String a, String b) {
         Query query = fStore.collection("tremps").whereEqualTo("src", a)
                 .whereEqualTo("dest", b).whereGreaterThan("emptySeats",0)
@@ -272,13 +249,7 @@ public class DataBase {
                 builder.setContentTitle("הצטרפת לטרמפ של");
                 String message = user.myCar.carColor+" בצבע "+user.myCar.carType+" רכב מסוג ,"+tremp.dest+" ל "+tremp.src+" מ "+user.name;
                 builder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
-//                Bitmap bitmapIcon = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.logo2);
-//                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                    builder.setSmallIcon(R.drawable.logo2).setLargeIcon(bitmapIcon);
-//                } else {
-                    builder.setSmallIcon(R.drawable.logo2);
-//                }
-
+                builder.setSmallIcon(R.drawable.logo2);
                 builder.setAutoCancel(true);
                 managerCompat.notify(2,builder.build());
             }
@@ -291,9 +262,6 @@ public class DataBase {
         dF.update("name",firstName);
         dF.update("lastName",lastName);
         dF.update("phone",phone);
-
-
-
     }
 
     public static void profileDriver(EditText firstName, EditText lastName, TextView email, TextView gender, TextView id, EditText phone, EditText carColor, EditText carType, EditText carNumber) {
